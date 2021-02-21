@@ -1,0 +1,2 @@
+CREATE TABLE tbl_users(id INT AUTO_INCREMENT PRIMARY KEY, email VARCHAR(255), password VARCHAR(255));
+INSERT INTO tbl_users(email, password) VALUES ('admin@jukebox.com', '$2a$10$3xSp3u0AX5S3wRGTiPv9huxRsPgmsLRy4TYOvVnG0ZBbE3XPYfPz6');
