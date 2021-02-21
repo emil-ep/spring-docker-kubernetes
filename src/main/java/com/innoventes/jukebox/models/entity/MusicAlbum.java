@@ -13,14 +13,12 @@ public class MusicAlbum {
     private Long id;
 
     @Column(name = "name")
-    @NotBlank(message = "Album name cannot be empty")
     private String name;
 
     @Column(name = "genre")
     private String genre;
 
     @Column(name = "price")
-    @NotNull(message = "Price cannot be empty")
     private Integer price;
 
     @Column(name = "description")

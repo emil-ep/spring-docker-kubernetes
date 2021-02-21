@@ -5,6 +5,7 @@ import com.innoventes.jukebox.models.request.AlbumRequest;
 import com.innoventes.jukebox.models.response.JukeboxResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

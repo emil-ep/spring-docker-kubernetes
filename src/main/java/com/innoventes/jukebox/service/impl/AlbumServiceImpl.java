@@ -18,12 +18,7 @@ public class AlbumServiceImpl implements AlbumService {
 
     @Override
     public MusicAlbum createAlbum(MusicAlbum album) {
-        try {
-            return albumRepository.save(album);
-        } catch (Exception exception) {
-            LOGGER.error("Unable to save music album : {} ", exception.getMessage());
-            return null;
-        }
+        return albumRepository.save(album);
     }
 
     @Override
