@@ -1,6 +1,8 @@
 package com.innoventes.jukebox.models.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity(name = "tbl_music_album")
@@ -11,12 +13,14 @@ public class MusicAlbum {
     private Long id;
 
     @Column(name = "name")
+    @NotBlank(message = "Album name cannot be empty")
     private String name;
 
     @Column(name = "genre")
     private String genre;
 
     @Column(name = "price")
+    @NotNull(message = "Price cannot be empty")
     private Integer price;
 
     @Column(name = "description")
