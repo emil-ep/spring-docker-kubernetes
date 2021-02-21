@@ -15,6 +15,9 @@ public class JukeboxUser {
     @Column(name = "password")
     private String password;
 
+    public JukeboxUser() {
+    }
+
     public JukeboxUser(String email, String password) {
         this.email = email;
         this.password = password;
