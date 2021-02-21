@@ -11,4 +11,8 @@ public interface MusicianService {
     Musician createMusician(Musician musician);
 
     Optional<Musician> findByName(String name);
+
+    Optional<Musician> findById(Long id);
+
+    Musician updateMusician(Musician musician);
 }

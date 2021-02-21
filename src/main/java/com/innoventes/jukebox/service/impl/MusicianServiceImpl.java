@@ -24,4 +24,16 @@ public class MusicianServiceImpl implements MusicianService {
     public Optional<Musician> findByName(String name) {
         return musicianRepository.findByName(name);
     }
+
+    @Override
+    public Optional<Musician> findById(Long id) {
+        return musicianRepository.findById(id);
+    }
+
+    @Override
+    public Musician updateMusician(Musician musician) {
+        return musicianRepository.save(musician);
+    }
+
+
 }
