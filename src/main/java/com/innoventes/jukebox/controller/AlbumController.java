@@ -6,10 +6,7 @@ import com.innoventes.jukebox.models.response.JukeboxResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -22,7 +19,12 @@ public class AlbumController {
     private AlbumHelper albumHelper;
 
     @PutMapping("/")
-    public ResponseEntity<JukeboxResponse> createNewAlbum(@Valid @RequestBody AlbumRequest request){
+    public ResponseEntity<JukeboxResponse> createNewAlbum(@Valid @RequestBody AlbumRequest request) {
         return albumHelper.createAlbum(request);
+    }
+
+    @GetMapping("/sort/price")
+    public ResponseEntity<JukeboxResponse> fetchMusicAlbumsByPrice(@RequestParam int pageNo, @RequestParam int size) {
+        return albumHelper.fetchAlbumWithPagination(pageNo, size);
     }
 }

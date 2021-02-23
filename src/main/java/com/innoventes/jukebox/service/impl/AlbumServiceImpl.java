@@ -6,6 +6,8 @@ import com.innoventes.jukebox.service.AlbumService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,5 +26,10 @@ public class AlbumServiceImpl implements AlbumService {
     @Override
     public MusicAlbum updateAlbum(MusicAlbum album) {
         return null;
+    }
+
+    @Override
+    public Page<MusicAlbum> fetchMusicAlbums(Pageable pageable) {
+        return albumRepository.fetchMusicAlbums(pageable);
     }
 }

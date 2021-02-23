@@ -3,6 +3,7 @@ package com.innoventes.jukebox.models.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.Set;
 
 @Entity(name = "tbl_music_album")
@@ -21,6 +22,9 @@ public class MusicAlbum {
     @Column(name = "price")
     private Integer price;
 
+    @Column(name = "date_of_release")
+    private Date dateOfRelease;
+
     @Column(name = "description")
     private String description;
 
@@ -32,11 +36,15 @@ public class MusicAlbum {
     )
     private Set<Musician> musician;
 
-    public MusicAlbum(String name, String genre, Integer price, String description) {
+    public MusicAlbum() {
+    }
+
+    public MusicAlbum(String name, String genre, Integer price, String description, Date dateOfRelease) {
         this.name = name;
         this.genre = genre;
         this.price = price;
         this.description = description;
+        this.dateOfRelease = dateOfRelease;
     }
 
     public Long getId() {
@@ -85,5 +93,13 @@ public class MusicAlbum {
 
     public void setMusician(Set<Musician> musician) {
         this.musician = musician;
+    }
+
+    public Date getDateOfRelease() {
+        return dateOfRelease;
+    }
+
+    public void setDateOfRelease(Date dateOfRelease) {
+        this.dateOfRelease = dateOfRelease;
     }
 }
