@@ -14,6 +14,6 @@ public interface MusicianRepository extends JpaRepository<Musician, Long> {
 
     Optional<Musician> findByName(String name);
 
-    @Query("SELECT a FROM tbl_musicians a join a.albums m where m.id = ?1 ORDER BY a.name")
+    @Query("SELECT a FROM tbl_musician a join a.albums m where m.id = ?1 ORDER BY a.name")
     Page<Musician> fetchMusiciansByAlbumSortedByName(Long albumId, Pageable pageable);
 }

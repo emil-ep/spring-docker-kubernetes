@@ -1,5 +1,7 @@
 package com.innoventes.jukebox.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -16,7 +18,8 @@ public class Musician {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "musician")
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "musician")
     Set<MusicAlbum> albums;
 
     public Musician(String type, String name, Set<MusicAlbum> albums) {

@@ -22,6 +22,7 @@ import org.springframework.stereotype.Component;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 public class MusicianHelper {
@@ -57,6 +58,11 @@ public class MusicianHelper {
             Musician musician = musicianOptional.get();
             musician.setName(request.getName());
             musician.setType(request.getType());
+            Set<MusicAlbum> albums = request.getAlbumIds().stream().map(id -> {
+                Optional<MusicAlbum> musicAlbumOptional = albumService.findById(id);
+                return musicAlbumOptional.orElse(null);
+            }).collect(Collectors.toSet());
+            musician.setAlbums(albums);
             return ResponseEntity.ok(new SuccessResponse(musicianService.updateMusician(musician)));
 
         } else {
