@@ -7,11 +7,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface AlbumService {
 
-    MusicAlbum createAlbum(MusicAlbum album);
+    MusicAlbum save(MusicAlbum album);
+
+    Optional<MusicAlbum> findById(Long id);
 
     MusicAlbum updateAlbum(MusicAlbum album);
 

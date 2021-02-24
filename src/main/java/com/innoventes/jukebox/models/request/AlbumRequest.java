@@ -5,8 +5,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.List;
 
 public class AlbumRequest {
+
+    private Long id;
 
     @NotBlank(message = "name cannot be empty")
     @Size(min = 5, max = 100)
@@ -22,13 +25,13 @@ public class AlbumRequest {
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateOfRelease;
 
-    private Long musicianId;
+    private List<Long> musicianId;
 
-    public Long getMusicianId() {
+    public List<Long> getMusicianId() {
         return musicianId;
     }
 
-    public void setMusicianId(Long musicianId) {
+    public void setMusicianId(List<Long> musicianId) {
         this.musicianId = musicianId;
     }
 
@@ -70,5 +73,13 @@ public class AlbumRequest {
 
     public void setDateOfRelease(LocalDate dateOfRelease) {
         this.dateOfRelease = dateOfRelease;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

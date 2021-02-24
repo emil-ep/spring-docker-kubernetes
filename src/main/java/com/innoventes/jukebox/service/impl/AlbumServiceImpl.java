@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,8 +24,13 @@ public class AlbumServiceImpl implements AlbumService {
     private AlbumRepository albumRepository;
 
     @Override
-    public MusicAlbum createAlbum(MusicAlbum album) {
+    public MusicAlbum save(MusicAlbum album) {
         return albumRepository.save(album);
+    }
+
+    @Override
+    public Optional<MusicAlbum> findById(Long id) {
+        return albumRepository.findById(id);
     }
 
     @Override
@@ -34,7 +40,7 @@ public class AlbumServiceImpl implements AlbumService {
 
     @Override
     public Page<MusicAlbum> fetchMusicAlbumsByMusician(Musician musician, Pageable pageable) {
-        return albumRepository.fetchMusicAlbumsByMusician(pageable, musician.getId());
+        return albumRepository.fetchMusicAlbumsByMusician(musician.getId(), pageable);
     }
 
     @Override

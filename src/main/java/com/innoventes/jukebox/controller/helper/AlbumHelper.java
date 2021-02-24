@@ -24,6 +24,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Component
@@ -38,12 +39,11 @@ public class AlbumHelper {
     private MusicianService musicianService;
 
     public ResponseEntity<JukeboxResponse> createAlbum(AlbumRequest request) {
-        Set<Musician> musicianSet = null;
+        Set<Musician> musicianSet = new HashSet<>();
         if (request.getMusicianId() != null) {
-            Optional<Musician> musicianOptional = musicianService.findById(request.getMusicianId());
-            if (musicianOptional.isPresent()) {
-                musicianSet = new HashSet<>();
-                musicianSet.add(musicianOptional.get());
+            for (Long id : request.getMusicianId()) {
+                Optional<Musician> musicianOptional = musicianService.findById(id);
+                musicianOptional.ifPresent(musicianSet::add);
             }
         }
         MusicAlbum album = new MusicAlbum(
@@ -54,8 +54,31 @@ public class AlbumHelper {
                 Date.valueOf(request.getDateOfRelease()),
                 musicianSet
         );
-        MusicAlbum musicAlbum = albumService.createAlbum(album);
+        MusicAlbum musicAlbum = albumService.save(album);
         return ResponseEntity.ok(new SuccessResponse(musicAlbum));
+    }
+
+    public ResponseEntity<JukeboxResponse> updateAlbum(AlbumRequest request) {
+        Optional<MusicAlbum> musicAlbumOptional = albumService.findById(request.getId());
+        if (!musicAlbumOptional.isPresent())
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("Music Album with id "
+                    + request.getId() + " not found"));
+        else {
+            MusicAlbum musicAlbum = musicAlbumOptional.get();
+            musicAlbum.setDateOfRelease(Date.valueOf(request.getDateOfRelease()));
+            musicAlbum.setGenre(request.getGenre());
+            musicAlbum.setPrice(request.getPrice());
+            musicAlbum.setDescription(request.getDescription());
+            Set<Musician> musicians = request.getMusicianId().stream().map(id -> {
+                        Optional<Musician> musician = musicianService.findById(id);
+                        return musician.orElse(null);
+                    }
+            ).collect(Collectors.toSet());
+            musicAlbum.setMusician(musicians);
+            musicAlbum.setName(request.getName());
+            MusicAlbum savedAlbum = albumService.save(musicAlbum);
+            return ResponseEntity.ok(new SuccessResponse(savedAlbum));
+        }
     }
 
     public ResponseEntity<JukeboxResponse> fetchAlbumWithPagination(int musicianId, int pageNo, int size) {

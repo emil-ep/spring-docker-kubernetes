@@ -23,6 +23,12 @@ public class AlbumController {
         return albumHelper.createAlbum(request);
     }
 
+    @PatchMapping("/")
+    public ResponseEntity<JukeboxResponse> updateAlbum(@Valid @RequestBody AlbumRequest request){
+        return albumHelper.updateAlbum(request);
+    }
+
+
     @GetMapping("/sort/price")
     public ResponseEntity<JukeboxResponse> fetchMusicAlbumsByPrice(@RequestParam int musicianId,@RequestParam int pageNo, @RequestParam int size) {
         return albumHelper.fetchAlbumWithPagination(musicianId, pageNo, size);

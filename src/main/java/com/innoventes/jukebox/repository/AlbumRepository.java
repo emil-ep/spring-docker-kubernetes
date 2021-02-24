@@ -6,15 +6,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import java.util.List;
-
 public interface AlbumRepository extends JpaRepository<MusicAlbum, Long> {
 
     @Query("SELECT a FROM tbl_music_album a ORDER BY price")
     Page<MusicAlbum> fetchMusicAlbums(Pageable pageable);
 
-    @Query("SELECT a FROM tbl_music_album a WHERE a.id = ?2 ORDER BY PRICE")
-    Page<MusicAlbum> fetchMusicAlbumsByMusician(Pageable pageable, Long musicianId);
-
+    @Query("SELECT a FROM tbl_music_album a join a.musician m where m.id = ?1 ORDER BY a.price")
+    Page<MusicAlbum> fetchMusicAlbumsByMusician(Long musicianId, Pageable pageable);
 
 }
