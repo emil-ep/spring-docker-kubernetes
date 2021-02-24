@@ -1,6 +1,7 @@
 package com.innoventes.jukebox.models.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity(name = "tbl_musician")
 public class Musician {
@@ -15,12 +16,24 @@ public class Musician {
     @Column(name = "name")
     private String name;
 
-    public Musician(String type, String name) {
+    @ManyToMany(mappedBy = "musician")
+    Set<MusicAlbum> albums;
+
+    public Musician(String type, String name, Set<MusicAlbum> albums) {
         this.type = type;
         this.name = name;
+        this.albums = albums;
     }
 
     public Musician() {
+    }
+
+    public Set<MusicAlbum> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(Set<MusicAlbum> albums) {
+        this.albums = albums;
     }
 
     public Long getId() {

@@ -1,6 +1,9 @@
 package com.innoventes.jukebox.service;
 
+import com.innoventes.jukebox.models.entity.MusicAlbum;
 import com.innoventes.jukebox.models.entity.Musician;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -15,4 +18,6 @@ public interface MusicianService {
     Optional<Musician> findById(Long id);
 
     Musician updateMusician(Musician musician);
+
+    Page<Musician> fetchMusiciansByAlbum(MusicAlbum album, Pageable pageable);
 }

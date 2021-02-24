@@ -5,6 +5,7 @@ import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 public class MusicianRequest {
 
@@ -16,6 +17,16 @@ public class MusicianRequest {
     private String name;
 
     private String type;
+
+    private List<Long> albumIds;
+
+    public List<Long> getAlbumIds() {
+        return albumIds;
+    }
+
+    public void setAlbumIds(List<Long> albumIds) {
+        this.albumIds = albumIds;
+    }
 
     public String getName() {
         return name;

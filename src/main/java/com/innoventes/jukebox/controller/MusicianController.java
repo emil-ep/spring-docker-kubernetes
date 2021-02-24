@@ -27,4 +27,9 @@ public class MusicianController {
     public ResponseEntity<JukeboxResponse> updateMusician(@Valid @RequestBody MusicianRequest request) {
         return musicianHelper.updateMusician(request);
     }
+
+    @GetMapping("/sort/name")
+    public ResponseEntity<JukeboxResponse> fetchMusicianList(@RequestParam Integer albumId, @RequestParam int pageNo, @RequestParam int size){
+        return musicianHelper.fetchMusicianWithPagination(albumId, pageNo, size);
+    }
 }
