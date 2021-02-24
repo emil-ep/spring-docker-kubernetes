@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.util.List;
 
 
 @Component
@@ -43,5 +44,10 @@ public class AlbumHelper {
         Pageable pageable = PageRequest.of(pageNo, size);
         Page<MusicAlbum> musicAlbums = albumService.fetchMusicAlbums(pageable);
         return ResponseEntity.ok(new PageableResponse(musicAlbums.getContent(), musicAlbums.getTotalElements()));
+    }
+
+    public ResponseEntity<JukeboxResponse> fetchAlbumsSortedByDate() {
+        List<MusicAlbum> sortedAlbums = albumService.sortAllAlbumsWithDate();
+        return ResponseEntity.ok(new SuccessResponse(sortedAlbums));
     }
 }

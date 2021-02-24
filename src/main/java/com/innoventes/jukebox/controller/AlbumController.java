@@ -27,4 +27,9 @@ public class AlbumController {
     public ResponseEntity<JukeboxResponse> fetchMusicAlbumsByPrice(@RequestParam int pageNo, @RequestParam int size) {
         return albumHelper.fetchAlbumWithPagination(pageNo, size);
     }
+
+    @GetMapping("/sort/date")
+    public ResponseEntity<JukeboxResponse> fetchMusicAlbumsByDate() {
+        return albumHelper.fetchAlbumsSortedByDate();
+    }
 }
