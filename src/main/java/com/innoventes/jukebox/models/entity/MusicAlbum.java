@@ -28,7 +28,7 @@ public class MusicAlbum {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "album_musicians",
             joinColumns = {@JoinColumn(name = "album_id", referencedColumnName = "id")},
