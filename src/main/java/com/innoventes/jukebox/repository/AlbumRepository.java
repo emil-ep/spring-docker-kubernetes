@@ -13,5 +13,8 @@ public interface AlbumRepository extends JpaRepository<MusicAlbum, Long> {
     @Query("SELECT a FROM tbl_music_album a ORDER BY price")
     Page<MusicAlbum> fetchMusicAlbums(Pageable pageable);
 
+    @Query("SELECT a FROM tbl_music_album a WHERE a.id = ?2 ORDER BY PRICE")
+    Page<MusicAlbum> fetchMusicAlbumsByMusician(Pageable pageable, Long musicianId);
+
 
 }

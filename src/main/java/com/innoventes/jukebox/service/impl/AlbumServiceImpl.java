@@ -1,6 +1,7 @@
 package com.innoventes.jukebox.service.impl;
 
 import com.innoventes.jukebox.models.entity.MusicAlbum;
+import com.innoventes.jukebox.models.entity.Musician;
 import com.innoventes.jukebox.repository.AlbumRepository;
 import com.innoventes.jukebox.service.AlbumService;
 import org.slf4j.Logger;
@@ -10,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,8 +33,8 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
-    public Page<MusicAlbum> fetchMusicAlbums(Pageable pageable) {
-        return albumRepository.fetchMusicAlbums(pageable);
+    public Page<MusicAlbum> fetchMusicAlbumsByMusician(Musician musician, Pageable pageable) {
+        return albumRepository.fetchMusicAlbumsByMusician(pageable, musician.getId());
     }
 
     @Override

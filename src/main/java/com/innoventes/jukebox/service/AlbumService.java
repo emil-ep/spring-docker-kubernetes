@@ -1,6 +1,7 @@
 package com.innoventes.jukebox.service;
 
 import com.innoventes.jukebox.models.entity.MusicAlbum;
+import com.innoventes.jukebox.models.entity.Musician;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ public interface AlbumService {
 
     MusicAlbum updateAlbum(MusicAlbum album);
 
-    Page<MusicAlbum> fetchMusicAlbums(Pageable pageable);
+    Page<MusicAlbum> fetchMusicAlbumsByMusician(Musician musician, Pageable pageable);
 
     List<MusicAlbum> sortAllAlbumsWithDate();
 }

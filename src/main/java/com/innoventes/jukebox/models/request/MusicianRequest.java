@@ -17,17 +17,6 @@ public class MusicianRequest {
 
     private String type;
 
-    public MusicianRequest(@NotBlank(message = "Name must not be empty") @Size(min = 3, max = 50) String name, String type) {
-        this.name = name;
-        this.type = type;
-    }
-
-    public MusicianRequest(@Nullable Long id, @NotBlank(message = "Name must not be empty") @Size(min = 3, max = 50) String name, String type) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-    }
-
     public String getName() {
         return name;
     }

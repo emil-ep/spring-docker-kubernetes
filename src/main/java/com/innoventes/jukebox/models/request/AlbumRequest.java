@@ -22,6 +22,16 @@ public class AlbumRequest {
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateOfRelease;
 
+    private Long musicianId;
+
+    public Long getMusicianId() {
+        return musicianId;
+    }
+
+    public void setMusicianId(Long musicianId) {
+        this.musicianId = musicianId;
+    }
+
     public String getName() {
         return name;
     }

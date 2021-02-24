@@ -39,12 +39,13 @@ public class MusicAlbum {
     public MusicAlbum() {
     }
 
-    public MusicAlbum(String name, String genre, Integer price, String description, Date dateOfRelease) {
+    public MusicAlbum(String name, String genre, Integer price, String description, Date dateOfRelease, Set<Musician> musician) {
         this.name = name;
         this.genre = genre;
         this.price = price;
         this.description = description;
         this.dateOfRelease = dateOfRelease;
+        this.musician = musician;
     }
 
     public Long getId() {

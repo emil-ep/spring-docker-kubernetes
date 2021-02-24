@@ -20,6 +20,9 @@ public class Musician {
         this.name = name;
     }
 
+    public Musician() {
+    }
+
     public Long getId() {
         return id;
     }

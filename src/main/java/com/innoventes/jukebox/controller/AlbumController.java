@@ -24,8 +24,8 @@ public class AlbumController {
     }
 
     @GetMapping("/sort/price")
-    public ResponseEntity<JukeboxResponse> fetchMusicAlbumsByPrice(@RequestParam int pageNo, @RequestParam int size) {
-        return albumHelper.fetchAlbumWithPagination(pageNo, size);
+    public ResponseEntity<JukeboxResponse> fetchMusicAlbumsByPrice(@RequestParam int musicianId,@RequestParam int pageNo, @RequestParam int size) {
+        return albumHelper.fetchAlbumWithPagination(musicianId, pageNo, size);
     }
 
     @GetMapping("/sort/date")
