@@ -30,7 +30,7 @@ public class MusicAlbum {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "album_musicians",
+            name = "tbl_album_musicians",
             joinColumns = {@JoinColumn(name = "album_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "musician_id", referencedColumnName = "id")}
     )
