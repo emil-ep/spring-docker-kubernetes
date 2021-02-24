@@ -1,8 +1,10 @@
 package com.innoventes.jukebox.models.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 public class AlbumRequest {
 
@@ -16,6 +18,9 @@ public class AlbumRequest {
     private Integer price;
 
     private String description;
+
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    private LocalDate dateOfRelease;
 
     public String getName() {
         return name;
@@ -47,5 +52,13 @@ public class AlbumRequest {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public LocalDate getDateOfRelease() {
+        return dateOfRelease;
+    }
+
+    public void setDateOfRelease(LocalDate dateOfRelease) {
+        this.dateOfRelease = dateOfRelease;
     }
 }
