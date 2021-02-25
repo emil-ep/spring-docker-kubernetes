@@ -31,11 +31,11 @@
    
 * Copy the token string which is passed as Authorization header. <br />
   Format for sending Auth header <br />
-  Authorization - Bearer <token><br />
+  Authorization - Bearer token_value<br />
   
 * Create Musician API <br />
   url - http://localhost:8089/api/v1/musician <br />
-  Header - Authorization - Bearer <token> <br />
+  Header - Authorization - Bearer token_value <br />
   example Request Body - <br />
   {<br />
       "name" : "Julia michaels",<br />
@@ -45,7 +45,7 @@
 * Update Musician API <br />
   Method - PATCH <br />
   url - http://localhost:8089/api/v1/musician <br />
-  Header - Authorization - Bearer <token> <br />
+  Header - Authorization - Bearer token_value <br />
   example Request Body - <br />
   {   <br />  
         "id" : 1000, <br />
@@ -56,7 +56,7 @@
 * Fetch musicians based on music album sorted by name<br />
   Method - GET<br />
   url - http://localhost:8089/api/v1/musician/sort/name?albumId=2&pageNo=0&size=5<br />
-  Header - Authorization - Bearer <token> <br />
+  Header - Authorization - Bearer token_value <br />
   Query params -<br />
   albumId - id of the music album<br />
   pageNo - page no for pagination<br />
@@ -65,7 +65,7 @@
 * Create music album <br />
   url - http://localhost:8089/api/v1/album/<br />
   Method - PUT<br />
-  Header - Authorization - Bearer <token> <br />
+  Header - Authorization - Bearer token_value <br />
   example Request Body - <br />
   {<br />
       "name" : "Hybrid theory",<br />
@@ -79,7 +79,7 @@
 * Update Music Album <br />
   url - http://localhost:8089/api/v1/album/
   Method - PATCH
-  Header - Authorization - Bearer <token> <br />
+  Header - Authorization - Bearer token_value <br />
   example Request Body - <br />
   {<br />
       "id" : 2,<br />
@@ -94,13 +94,13 @@
 * Fetch list of Music albums sorted by Date of release in ascending order<br />
   url - http://localhost:8089/api/v1/album/sort/date<br />
   Method - GET<br />
-  Header - Authorization - Bearer <token> <br />
+  Header - Authorization - Bearer token_value <br />
  
 * Fetch list of Music albums for a specified musician sorted by Price in
   ascending order<br />
   url - http://localhost:8089/api/v1/album/sort/price?pageNo=0&size=5&musicianId=1<br />
   Method - GET<br />
-  Header - Authorization - Bearer <token> <br />
+  Header - Authorization - Bearer token_value <br />
   Query params -<br />
   musicianId - id of the musician <br />
   pageNo -  page number for pagination<br />
@@ -110,7 +110,7 @@
   Name in ascending order.<br />
   url - http://localhost:8089/api/v1/musician/sort/name?albumId=2&pageNo=0&size=5
   Method - GET<br />
-  Header - Authorization - Bearer <token> <br />
+  Header - Authorization - Bearer token_value <br />
   Query params - <br />
   albumId - id of the album based on which the musician should be listed<br />
   pageNo -  page number for pagination<br /><br />
