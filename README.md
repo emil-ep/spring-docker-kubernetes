@@ -6,7 +6,7 @@
 * Login to mysql server
 * create a database named "jukebox" - CREATE DATABASE jukebox
 * Create a jar build of the application using the maven command - mvn clean install
-* Run the application using the command - java -jar <path-to-jar-build>
+* Run the application using the command : java -jar path/to/jar/build
 * By default the application runs on the port 8089
 
 
