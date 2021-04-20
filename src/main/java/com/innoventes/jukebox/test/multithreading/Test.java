@@ -25,6 +25,10 @@ public class Test {
         // Starting thread instance t1 and t2
         t1.start();
         t2.start();
+
+        Thread t = new Thread(() -> System.out.println("Something"));
+        t.start();
+
     }
 
 }
