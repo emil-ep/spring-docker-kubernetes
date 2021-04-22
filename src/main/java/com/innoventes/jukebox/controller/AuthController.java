@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import static com.innoventes.jukebox.constants.ApiConstants.AUTHENTICATION_BASE_PATH;
+import static com.innoventes.jukebox.constants.ApiConstants.*;
 
 @RestController
 @RequestMapping(AUTHENTICATION_BASE_PATH)
@@ -22,12 +22,12 @@ public class AuthController {
     private PasswordEncoder encoder;
 
 
-    @PostMapping("/signIn")
+    @PostMapping(API_SIGN_IN)
     public ResponseEntity<JukeboxResponse> signInUser(@RequestBody LoginRequest request) {
         return authHelper.signInUser(request);
     }
 
-    @GetMapping("/encrypt/{var}")
+    @GetMapping(API_ENCRYPT)
     public ResponseEntity<JukeboxResponse> encrypt(@PathVariable String var){
         return ResponseEntity.ok(new SuccessResponse(encoder.encode(var)));
     }
