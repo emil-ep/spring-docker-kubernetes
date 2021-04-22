@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+import static com.innoventes.jukebox.constants.ApiConstants.MUSICIAN_BASE_PATH;
+import static com.innoventes.jukebox.constants.ApiConstants.MUSICIAN_SORT_BY_NAME;
+
 @RestController
-@RequestMapping("/api/v1/musician")
+@RequestMapping(MUSICIAN_BASE_PATH)
 public class MusicianController {
 
     @Autowired
@@ -28,7 +31,7 @@ public class MusicianController {
         return musicianHelper.updateMusician(request);
     }
 
-    @GetMapping("/sort/name")
+    @GetMapping(MUSICIAN_SORT_BY_NAME)
     public ResponseEntity<JukeboxResponse> fetchMusicianList(@RequestParam Integer albumId, @RequestParam int pageNo, @RequestParam int size){
         return musicianHelper.fetchMusicianWithPagination(albumId, pageNo, size);
     }
