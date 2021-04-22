@@ -9,8 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import static com.innoventes.jukebox.constants.ApiConstants.AUTHENTICATION_BASE_PATH;
+
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping(AUTHENTICATION_BASE_PATH)
 public class AuthController {
 
     @Autowired
