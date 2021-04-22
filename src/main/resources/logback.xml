@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ [2014] - [2019] WiSilica Incorporated  All Rights Reserved.
+  ~  NOTICE:  All information contained herein is, and remains the property of WiSilica Incorporated and its suppliers, if any.
+  ~  The intellectual and technical concepts contained herein are proprietary to WiSilica Incorporated and its suppliers
+  ~ and may be covered by U.S. and Foreign Patents, patents in process,
+  ~ and are protected by trade secret or copyright law.
+  ~  Dissemination of this information or reproduction of this material is strictly forbidden
+  ~  unless prior written permission is obtained from WiSilica Incorporated.
+  -->
+
+<configuration>
+    <include
+            resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <!-- You can override this to have a custom pattern -->
+    <property name="FILE_LOG_PATTERN"
+              value="%d{dd-MM-yyyy HH:mm:ss.SSS} [%X{unique_RequestId}] ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } [%t] %class{50} [%M-%L] : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+
+    <turboFilter class="com.innoventes.jukebox.config.LogbackDebugFilter"/>
+
+    <appender name="FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/Users/emil/Documents/wisilica/logs/jukebox.log</file>
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>/Users/emil/Documents/wisilica/logs/jukebox.%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+
+            <!-- keep 30 days' worth of history capped at 3GB total size -->
+            <maxHistory>720</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
+
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="FILE"/>
+    </root>
+
+    <logger name="com.wisilica" level="debug" additivity="false">
+        <appender-ref ref="FILE"/>
+    </logger>
+
+    <logger name="io.swagger.models" level="error" additivity="false">
+        <appender-ref ref="FILE"/>
+    </logger>
+
+    <logger name="org.apache.ignite.internal" level="error" additivity="false">
+        <appender-ref ref="FILE"/>
+    </logger>
+
+</configuration>
