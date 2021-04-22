@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+import static com.innoventes.jukebox.constants.ApiConstants.*;
+
 @RestController
-@RequestMapping("/api/v1/album")
+@RequestMapping(ALBUM_BASE_PATH)
 public class AlbumController {
 
 
@@ -29,12 +31,12 @@ public class AlbumController {
     }
 
 
-    @GetMapping("/sort/price")
+    @GetMapping(API_ALBUM_SORT_BY_PRICE)
     public ResponseEntity<JukeboxResponse> fetchMusicAlbumsByPrice(@RequestParam int musicianId,@RequestParam int pageNo, @RequestParam int size) {
         return albumHelper.fetchAlbumWithPagination(musicianId, pageNo, size);
     }
 
-    @GetMapping("/sort/date")
+    @GetMapping(API_ALBUM_SORT_BY_DATE)
     public ResponseEntity<JukeboxResponse> fetchMusicAlbumsByDate() {
         return albumHelper.fetchAlbumsSortedByDate();
     }
