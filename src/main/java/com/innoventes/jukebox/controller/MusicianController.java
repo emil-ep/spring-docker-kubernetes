@@ -3,7 +3,6 @@ package com.innoventes.jukebox.controller;
 import com.innoventes.jukebox.controller.helper.MusicianHelper;
 import com.innoventes.jukebox.models.request.MusicianRequest;
 import com.innoventes.jukebox.models.response.JukeboxResponse;
-import com.innoventes.jukebox.service.MusicianService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

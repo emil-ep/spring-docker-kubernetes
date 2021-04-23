@@ -6,7 +6,6 @@ import com.innoventes.jukebox.constants.ApiConstants;
 import com.innoventes.jukebox.exceptions.JukeBoxUnauthorizedException;
 import com.innoventes.jukebox.security.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

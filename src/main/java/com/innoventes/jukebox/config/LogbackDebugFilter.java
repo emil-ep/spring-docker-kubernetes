@@ -15,12 +15,6 @@ import ch.qos.logback.core.spi.FilterReply;
 import org.slf4j.MDC;
 import org.slf4j.Marker;
 
-/**
- * @author Jyothish <jdharmarajan@wisilica.com>
- * 
- * It will enable the log of all levels, for each request if the same is enabled via http header
- *
- */
 public class LogbackDebugFilter extends TurboFilter {
 
 	public static final String MDC_DEBUG_LOG_ENABLED_ON_REQUEST = "DEBUG_LOG_ENABLED_ON_REQUEST";
