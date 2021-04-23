@@ -50,7 +50,7 @@ public class AuthHelper {
 
         }catch (Exception ex){
             LOGGER.error("Error while signing in User with email : {}", loginRequest.getEmail());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse("Unable to Login, Please try again later"));
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ErrorResponse("Unable to Login, Please check credentials"));
         }
     }
 }
