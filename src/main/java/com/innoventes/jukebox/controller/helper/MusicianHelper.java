@@ -9,6 +9,7 @@ import com.innoventes.jukebox.models.response.PageableResponse;
 import com.innoventes.jukebox.models.response.SuccessResponse;
 import com.innoventes.jukebox.service.AlbumService;
 import com.innoventes.jukebox.service.MusicianService;
+import com.innoventes.jukebox.util.MusicianUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,22 +28,23 @@ import java.util.stream.Collectors;
 @Component
 public class MusicianHelper {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(MusicianHelper.class);
     @Autowired
     private MusicianService musicianService;
-
     @Autowired
     private AlbumService albumService;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(MusicianHelper.class);
 
     public ResponseEntity<JukeboxResponse> createMusician(MusicianRequest request) {
         if (musicianService.findByName(request.getName()).isPresent())
             return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorResponse("Musician with name " +
                     request.getName() + " already exists"));
         else {
+            if (!MusicianUtility.validateMusicianType(request.getType()))
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("Musician type is not " +
+                        "valid!"));
             Set<MusicAlbum> musicAlbumSet = new HashSet<>();
-            if (request.getAlbumIds() != null){
-                for (Long id : request.getAlbumIds()){
+            if (request.getAlbumIds() != null) {
+                for (Long id : request.getAlbumIds()) {
                     Optional<MusicAlbum> musicAlbumOptional = albumService.findById(id);
                     musicAlbumOptional.ifPresent(musicAlbumSet::add);
                 }
@@ -57,6 +59,9 @@ public class MusicianHelper {
         if (musicianOptional.isPresent()) {
             Musician musician = musicianOptional.get();
             musician.setName(request.getName());
+            if (!MusicianUtility.validateMusicianType(request.getType()))
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("Musician type is not " +
+                        "valid!"));
             musician.setType(request.getType());
             Set<MusicAlbum> albums = request.getAlbumIds().stream().map(id -> {
                 Optional<MusicAlbum> musicAlbumOptional = albumService.findById(id);
