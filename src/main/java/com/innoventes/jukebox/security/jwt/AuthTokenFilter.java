@@ -50,7 +50,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
             SecurityContextHolder.getContext().setAuthentication(authentication);
         } else {
-            throw new JukeBoxUnauthorizedException("User is unauthorized");
+            throw new JukeBoxUnauthorizedException("User is unauthenticated to access the resource. Please check your auth token!");
         }
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
