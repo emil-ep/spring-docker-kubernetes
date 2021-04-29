@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -31,7 +32,8 @@ public class MusicianControllerTest extends AbstractControllerTest{
         musicianRequest.setType(MusicianTypes.POP.getMusicianType());
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .put(ApiConstants.MUSICIAN_BASE_PATH)
-                .header(TestUtils.AUTHORIZATION_HEADER, testAuthHelper.getAuthHeader("admin@jukebox.com", "password"))
+                .header(TestUtils.AUTHORIZATION_HEADER, testAuthHelper.getAuthHeader("admin@jukebox.com",
+                        "password"))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(Objects.requireNonNull(CommonUtils.convertToJson(musicianRequest)))
                 .accept(MediaType.APPLICATION_JSON);
@@ -87,7 +89,8 @@ public class MusicianControllerTest extends AbstractControllerTest{
         request.setName("1");
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .patch(ApiConstants.MUSICIAN_BASE_PATH)
-                .header(TestUtils.AUTHORIZATION_HEADER, testAuthHelper.getAuthHeader("admin@jukebox.com", "password"))
+                .header(TestUtils.AUTHORIZATION_HEADER, testAuthHelper.getAuthHeader("admin@jukebox.com",
+                        "password"))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(Objects.requireNonNull(CommonUtils.convertToJson(request)))
                 .accept(MediaType.APPLICATION_JSON);
@@ -105,5 +108,21 @@ public class MusicianControllerTest extends AbstractControllerTest{
                 .content(Objects.requireNonNull(CommonUtils.convertToJson(request)))
                 .accept(MediaType.APPLICATION_JSON);
         mockMvc.perform(requestBuilder).andDo(print()).andExpect(MockMvcResultMatchers.status().isBadRequest());
+    }
+
+    @Test
+    public void callCreateMusicianWithValidData() throws Exception{
+        MusicianRequest request = new MusicianRequest();
+        request.setType(MusicianTypes.POP.getMusicianType());
+        request.setName("Musician");
+        request.setAlbumIds(Arrays.asList(1L, 2L));
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .put(ApiConstants.MUSICIAN_BASE_PATH)
+                .header(TestUtils.AUTHORIZATION_HEADER, testAuthHelper.getAuthHeader("admin@jukebox.com", "password"))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(Objects.requireNonNull(CommonUtils.convertToJson(request)))
+                .accept(MediaType.APPLICATION_JSON);
+        mockMvc.perform(requestBuilder).andDo(print())
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }
