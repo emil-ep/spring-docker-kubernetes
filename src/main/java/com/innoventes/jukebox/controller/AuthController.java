@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import static com.innoventes.jukebox.constants.ApiConstants.*;
 
 @RestController
-@RequestMapping(AUTHENTICATION_BASE_PATH)
 public class AuthController {
 
     @Autowired

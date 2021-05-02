@@ -5,7 +5,6 @@ import com.innoventes.jukebox.models.request.AlbumRequest;
 import com.innoventes.jukebox.models.response.JukeboxResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -13,19 +12,18 @@ import javax.validation.Valid;
 import static com.innoventes.jukebox.constants.ApiConstants.*;
 
 @RestController
-@RequestMapping(ALBUM_BASE_PATH)
 public class AlbumController {
 
 
     @Autowired
     private AlbumHelper albumHelper;
 
-    @PutMapping("/")
+    @PutMapping(ALBUM_BASE_PATH)
     public ResponseEntity<JukeboxResponse> createNewAlbum(@Valid @RequestBody AlbumRequest request) {
         return albumHelper.createAlbum(request);
     }
 
-    @PatchMapping("/")
+    @PatchMapping(ALBUM_BASE_PATH)
     public ResponseEntity<JukeboxResponse> updateAlbum(@Valid @RequestBody AlbumRequest request){
         return albumHelper.updateAlbum(request);
     }
