@@ -1,5 +1,6 @@
 package com.innoventes.jukebox.advice;
 
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.innoventes.jukebox.exceptions.JukeBoxUnauthorizedException;
 import com.innoventes.jukebox.models.response.ErrorResponse;
 import com.innoventes.jukebox.models.response.JukeboxResponse;
@@ -20,6 +21,8 @@ public class RestExceptionHandler  {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ErrorResponse(exception.getMessage()));
     }
 
-
-
+    @ExceptionHandler(value = {InvalidFormatException.class})
+    public ResponseEntity<JukeboxResponse> handleInvalidDateFormatException(InvalidFormatException exception){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(exception.getMessage()));
+    }
 }
