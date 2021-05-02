@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 import static com.innoventes.jukebox.constants.ApiConstants.ALBUM_BASE_PATH;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -34,10 +35,10 @@ public class AlbumControllerTest extends AbstractControllerTest {
                 .header(TestUtils.AUTHORIZATION_HEADER,
                         testAuthHelper.getAuthHeader("admin@jukebox.com", "password"))
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(CommonUtils.convertToJson(getAlbumRequest(
+                .content(Objects.requireNonNull(CommonUtils.convertToJson(getAlbumRequest(
                         null, "", getValidDateOfRelease(), "test description", "POP", 100,
                         Arrays.asList(1L, 2L))
-                ))
+                )))
                 .accept(MediaType.APPLICATION_JSON);
         mockMvc.perform(requestBuilder).andDo(print()).andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
@@ -49,10 +50,10 @@ public class AlbumControllerTest extends AbstractControllerTest {
                 .header(TestUtils.AUTHORIZATION_HEADER,
                         testAuthHelper.getAuthHeader("admin@jukebox.com", "password"))
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(CommonUtils.convertToJson(getAlbumRequest(
+                .content(Objects.requireNonNull(CommonUtils.convertToJson(getAlbumRequest(
                         null, "Test Album", getValidDateOfRelease(), "Sample description", "POP", null,
                         Arrays.asList(1L, 2L))
-                ))
+                )))
                 .accept(MediaType.APPLICATION_JSON);
         mockMvc.perform(requestBuilder).andDo(print()).andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
