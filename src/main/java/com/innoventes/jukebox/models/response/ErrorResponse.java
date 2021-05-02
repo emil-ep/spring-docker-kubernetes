@@ -15,4 +15,5 @@ public class ErrorResponse extends JukeboxResponse{
     public void setStatus(int status) {
         this.status = status;
     }
+
 }

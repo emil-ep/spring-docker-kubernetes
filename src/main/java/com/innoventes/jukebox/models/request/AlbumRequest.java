@@ -1,12 +1,16 @@
 package com.innoventes.jukebox.models.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.innoventes.jukebox.serializer.AlbumRequestSerializer;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
+@JsonSerialize(using = AlbumRequestSerializer.class)
 public class AlbumRequest {
 
     private Long id;
@@ -82,4 +86,5 @@ public class AlbumRequest {
     public void setId(Long id) {
         this.id = id;
     }
+
 }

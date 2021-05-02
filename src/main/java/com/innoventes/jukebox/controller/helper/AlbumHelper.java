@@ -59,6 +59,9 @@ public class AlbumHelper {
     }
 
     public ResponseEntity<JukeboxResponse> updateAlbum(AlbumRequest request) {
+        if (request.getId() == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Please provide album Id"));
+        }
         Optional<MusicAlbum> musicAlbumOptional = albumService.findById(request.getId());
         if (!musicAlbumOptional.isPresent())
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("Music Album with id "
