@@ -10,6 +10,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @AutoConfigureMockMvc
 public class AbstractControllerTest {
@@ -29,7 +30,7 @@ public class AbstractControllerTest {
     }
 
     protected AlbumRequest getAlbumRequest(Long id,String name, LocalDate dateOfRelease, String description, String genre,
-                                           Integer price){
+                                           Integer price, List<Long> musicianIds){
         AlbumRequest albumRequest = new AlbumRequest();
         if (id != null)
             albumRequest.setId(id);
@@ -38,6 +39,7 @@ public class AbstractControllerTest {
         albumRequest.setDescription(description);
         albumRequest.setGenre(genre);
         albumRequest.setPrice(price);
+        albumRequest.setMusicianId(musicianIds);
         return albumRequest;
     }
 
