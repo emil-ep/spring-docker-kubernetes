@@ -30,7 +30,8 @@ public class MusicianController {
     }
 
     @GetMapping(MUSICIAN_SORT_BY_NAME)
-    public ResponseEntity<JukeboxResponse> fetchMusicianList(@RequestParam Integer albumId, @RequestParam int pageNo, @RequestParam int size){
+    public ResponseEntity<JukeboxResponse> fetchMusicianList(@RequestParam Integer albumId, @RequestParam Integer pageNo,
+                                                             @RequestParam Integer size){
         return musicianHelper.fetchMusicianWithPagination(albumId, pageNo, size);
     }
 }
