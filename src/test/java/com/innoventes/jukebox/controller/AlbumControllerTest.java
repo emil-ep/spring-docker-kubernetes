@@ -1,6 +1,7 @@
 package com.innoventes.jukebox.controller;
 
 import com.innoventes.jukebox.controller.helper.AlbumHelper;
+import com.innoventes.jukebox.models.request.AlbumRequest;
 import com.innoventes.jukebox.util.CommonUtils;
 import com.innoventes.jukebox.util.TestUtils;
 import org.junit.jupiter.api.Test;
@@ -23,10 +24,6 @@ public class AlbumControllerTest extends AbstractControllerTest {
 
     @Autowired
     private TestAuthHelper testAuthHelper;
-
-    @MockBean
-    private AlbumHelper albumHelper;
-
 
     @Test
     public void addAlbumWithEmptyName() throws Exception {
@@ -77,21 +74,22 @@ public class AlbumControllerTest extends AbstractControllerTest {
 //        mockMvc.perform(requestBuilder).andDo(print()).andExpect(MockMvcResultMatchers.status().isBadRequest());
 //    }
 
-//    @Test
-//    public void updateAlbumWithInvalidId() throws Exception{
-//        AlbumRequest request = getAlbumRequest(
-//                null, "something", getValidDateOfRelease(), "test description", "POP", 100,
-//                Arrays.asList(1L, 2L)
-//        );
-//        RequestBuilder requestBuilder = MockMvcRequestBuilders
-//                .patch(ALBUM_BASE_PATH)
-//                .header(TestUtils.AUTHORIZATION_HEADER,
-//                        testAuthHelper.getAuthHeader("admin@jukebox.com", "password"))
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(CommonUtils.convertToJson(request))
-//                .accept(MediaType.APPLICATION_JSON);
-//        mockMvc.perform(requestBuilder).andDo(print()).andExpect(MockMvcResultMatchers.status().isBadRequest());
-//    }
+    @Test
+    public void updateAlbumWithInvalidId() throws Exception{
+        AlbumRequest request = getAlbumRequest(
+                null, "something", getValidDateOfRelease(), "test description", "POP", 100,
+                Arrays.asList(1L, 2L)
+        );
+        String convertedValue = CommonUtils.convertToJson(request);
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .patch(ALBUM_BASE_PATH)
+                .header(TestUtils.AUTHORIZATION_HEADER,
+                        testAuthHelper.getAuthHeader("admin@jukebox.com", "password"))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(Objects.requireNonNull(convertedValue))
+                .accept(MediaType.APPLICATION_JSON);
+        mockMvc.perform(requestBuilder).andDo(print()).andExpect(MockMvcResultMatchers.status().isBadRequest());
+    }
 
 
 }
