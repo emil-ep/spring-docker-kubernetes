@@ -1,6 +1,8 @@
 For creating kubernetes cluster, this project uses minikube (this is not recommended for production use)
 Minikube can be used only for debugging purposes and for local development
 
+Reference url - https://learnk8s.io/spring-boot-kubernetes-guide
+
 1. Install 'kubectl' (kubernetes client) from the official documentation page
 2. Install Minikube from their official page according to your local machine platform
 3. For creating kubernetes cluster - we should dockerise the application first. See 'docker-readme.txt' associated with this project
