@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jukebox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jukebox
+  template:
+    metadata:
+      labels:
+        app: jukebox
+    spec:
+      containers:
+        - name: app
+          image: emilpradeep/jukebox:v3
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jukebox
+spec:
+  selector:
+    app: jukebox
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: LoadBalancer
