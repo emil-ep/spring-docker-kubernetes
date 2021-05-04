@@ -13,7 +13,7 @@ Reference url - https://learnk8s.io/spring-boot-kubernetes-guide
       So we can push the image to docker hub by the command
       'docker push <your-docker-id>/jukebox:v1'
 5. Once the image is uploaded to docker hub, create the deployment yaml files in k8 folder
-   See jukebox-deployment.yaml and mysql.yaml in k8 folder
+   See jukebox-deployment.yaml and mysql.yaml in k8 folder (make sure to replace the 'image' in deployment of jukebox)
 6. we can deploy the application to cluster using the command
    'kubectl apply -f k8' - This will deploy everything in the k8 folder
 7. We can see the kubernetes dashboard using the command
