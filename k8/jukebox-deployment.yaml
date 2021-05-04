@@ -1,3 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: log
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 256Mi
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -12,11 +24,23 @@ spec:
       labels:
         app: jukebox
     spec:
+      volumes:
+        - name: wmountpath
+          persistentVolumeClaim:
+            claimName: log
       containers:
         - name: app
-          image: emilpradeep/jukebox:v3
+          image: emilpradeep/jukebox:v4
           ports:
             - containerPort: 8080
+          env:
+            - name: logging.config
+              value: classpath:logback.xml
+            - name: logging.file
+              value: /Users/emil/Documents/wisilica/logs/jukebox.log
+          volumeMounts:
+            - name: wmountpath
+              mountPath: /Users
           imagePullPolicy: Always
 
 ---
