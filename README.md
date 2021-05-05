@@ -1,6 +1,40 @@
 # Jukebox
 
-### Application setup
+## Application setup
+
+We have provided 3 ways to run this application
+- Using Docker
+- Using Kubernetes
+- Local Deployment
+
+### Using Docker
+
+This application has been tested on `Docker version 20.10.5, build 55c4c88` <br />
+Please install the appropriate version of Docker from [Docker Documentation](https://docs.docker.com/engine/install/) <br />
+Make sure the `Dockerfile` is available in the root path of the project. The contents of the `Dockerfile` is as follows
+```
+FROM arm64v8/openjdk:8
+RUN mkdir /app
+RUN cd /app
+COPY target/jukebox-0.0.1-SNAPSHOT.jar /app/jukebox.jar
+COPY config/production.properties /app/application.properties
+WORKDIR /app
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "jukebox.jar", "--spring.config.location=application.properties"]
+```
+
+Here we are using a Base image of `arm64v8/openjdk:8` which is suitable for a M1 Macbook Pro. It is recommended to use the base image which correctly suits your machine platform. You can check if the openJdk base image is supported for your machine architecture by following this [link](https://hub.docker.com/_/openjdk) .<br />
+If you are using a non compatible version of the image, then its likely to show an error message<br />
+> The requested platform doesn't support the host platform
+
+Once this is done, you can follow the steps mentioned in the file `docker-readme.txt` which is attached with this project. The documentation provides a clear cut of how to deploy and start the container using docker.
+
+
+
+
+
+
+
 
 * Install mysql in local machine
 * Login to mysql server
