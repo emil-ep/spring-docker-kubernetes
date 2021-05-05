@@ -7,7 +7,7 @@ We have provided 3 ways to run this application
 - Using Kubernetes
 - Local Deployment
 
-### Using Docker
+### 1. Using Docker
 
 This application has been tested on `Docker version 20.10.5, build 55c4c88` <br />
 Please install the appropriate version of Docker from [Docker Documentation](https://docs.docker.com/engine/install/) <br />
@@ -29,13 +29,23 @@ If you are using a non compatible version of the image, then its likely to show 
 
 Once this is done, you can follow the steps mentioned in the file `docker-readme.txt` which is attached with this project. The documentation provides a clear cut of how to deploy and start the container using docker.
 
+### 2. Using Kubernetes
 
+For deploying this application using Kubernetes, we are using a localised setup called `Minikube`. This is not recommended for a production deployment and is only used for local testing and development.<br />
+1. Install `kubectl` which is a kubernetes resource client from their downloads [page](https://kubernetes.io/docs/tasks/tools/)
+2. Install `Minikube` from their official [page](https://minikube.sigs.k8s.io/docs/start/)
+3. Make sure you have already followed the instruction in `docker-readme.txt` and created docker image of the application locally
+4. Follow the instructions in the file `kubernetes-readme.txt` included in this project.
+5. The instructions provided in the txt file will guide you in deploying the application into a minikube kubernetes cluster
+6. In a production environment, you can try using kubectl directly in deploying applications
 
+#### References
+I've followed the below tutorials and documentations in deploying this application using kubernetes
+- [learnk8- springboot kubernetes deployment](https://learnk8s.io/spring-boot-kubernetes-guide)
+- [kubectl - kubernetes cli resource documentation](https://kubernetes.io/docs/reference/kubectl/overview/)
+- [minikube documentation](https://minikube.sigs.k8s.io/docs/start/)
 
-
-
-
-
+### 3. Local Deployment
 * Install mysql in local machine
 * Login to mysql server
 * create a database named "jukebox" - CREATE DATABASE jukebox
@@ -44,7 +54,7 @@ Once this is done, you can follow the steps mentioned in the file `docker-readme
 * By default the application runs on the port 8089
 
 
-### API documentation
+### API documentation (This will soon be moved to a Swagger doc)
 * Login to the application by the API <br />
    url - http://localhost:8089/api/v1/auth/signIn <br />
    Method - POST <br />
