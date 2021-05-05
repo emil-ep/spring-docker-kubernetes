@@ -54,7 +54,7 @@ I've followed the below tutorials and documentations in deploying this applicati
 * By default the application runs on the port 8089
 
 
-### API documentation
+### API documentation (This will soon be moved to a Swagger doc)
 * Login to the application by the API <br />
    url - http://localhost:8089/api/v1/auth/signIn <br />
    Method - POST <br />
