@@ -1,8 +1,10 @@
 package com.innoventes.jukebox.controller;
 
+import com.innoventes.jukebox.constants.SwaggerConstants;
 import com.innoventes.jukebox.controller.helper.MusicianHelper;
 import com.innoventes.jukebox.models.request.MusicianRequest;
 import com.innoventes.jukebox.models.response.JukeboxResponse;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,7 @@ import static com.innoventes.jukebox.constants.ApiConstants.MUSICIAN_BASE_PATH;
 import static com.innoventes.jukebox.constants.ApiConstants.MUSICIAN_SORT_BY_NAME;
 
 @RestController
+@Api(tags = {SwaggerConstants.MUSICIAN_MANAGEMENT})
 public class MusicianController {
 
     @Autowired
