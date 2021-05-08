@@ -45,6 +45,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
+        //actual filtering is done In the shouldNotFilter method in AuthTokenFilter class
+        //The below antMatchers filtering doesn't work
         web.ignoring().antMatchers("/api/v1/**");
     }
 
@@ -58,7 +60,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
+                //This antMatcher filtering doesn't work.
+                // The actual filtering is done in shouldNotFilter method in AuthTokenFilter class
                 .antMatchers("/api/v1/auth/**").permitAll()
+                .antMatchers(
+                        "/v2/api-docs",
+                        "/swagger-resources/**",
+                        "/swagger-ui.html",
+                        "/webjars/**" ,
+                        /*Probably not needed*/ "/swagger.json").permitAll()
                 .anyRequest()
                 .authenticated();
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

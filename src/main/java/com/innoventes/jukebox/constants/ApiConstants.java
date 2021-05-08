@@ -8,6 +8,14 @@ public class ApiConstants {
 
     public static final String AUTHENTICATION_BASE_PATH = BASE_URL + "/auth";
 
+    public static final String SWAGGER_DOC_PATH = "/v2/api-docs";
+
+    public static final String SWAGGER_UI_PATH = "/swagger-ui.html";
+
+    public static final String SWAGGER_RESOURCES = "/swagger-resources";
+
+    public static final String WEB_JARS_SWAGGER_UI_PATH = "/webjars/springfox-swagger-ui";
+
     public static final String API_SIGN_IN = BASE_URL + "/auth/signIn";
 
     public static final String API_ENCRYPT = BASE_URL + "/auth/encrypt/{var}";
