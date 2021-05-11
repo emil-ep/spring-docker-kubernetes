@@ -12,7 +12,7 @@
 	<artifactId>jukebox</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>jukebox</name>
-	<description>Application for demonstrating Jukebox application for Innoventes technologies</description>
+	<description>A music player application which provides recommendation services</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
