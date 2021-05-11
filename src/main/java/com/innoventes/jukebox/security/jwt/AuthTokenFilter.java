@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static com.innoventes.jukebox.constants.ApiConstants.*;
+
 
 public class AuthTokenFilter extends OncePerRequestFilter {
 
@@ -32,7 +34,11 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         String path = request.getRequestURI();
-        return path.contains(ApiConstants.AUTHENTICATION_BASE_PATH);
+       return path.contains(ApiConstants.AUTHENTICATION_BASE_PATH)
+                || path.contains(SWAGGER_UI_PATH)
+                || path.contains(SWAGGER_DOC_PATH)
+                || path.contains(SWAGGER_RESOURCES)
+                || path.contains(WEB_JARS_SWAGGER_UI_PATH);
     }
 
     @Override
