@@ -1,4 +1,4 @@
-package com.wisilica.ignite.tree;
+package com.innoventes.jukebox.test.tree;
 
 public class Node {
 

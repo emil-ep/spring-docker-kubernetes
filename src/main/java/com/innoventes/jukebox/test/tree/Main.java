@@ -1,8 +1,7 @@
-package com.wisilica.ignite.tree;
+package com.innoventes.jukebox.test.tree;
+
 
 public class Main {
-
-
     private  static int sumOfEvenLevel = 0;
     private static  int sumOfOddLevel = 0;
 
@@ -44,6 +43,4 @@ public class Main {
         int difference = sumOfEvenLevel - sumOfOddLevel;
         return difference;
     }
-
-
 }
