@@ -30,7 +30,9 @@ public class ApiConstants {
 
     public static final String MUSICIAN_SORT_BY_NAME = BASE_URL + "/musician/sort/name";
 
+    public static final String UPDATE_PROFILE_DETAILS = BASE_URL + "/profile";
 
+    public static final String GET_PROFILE_DETAILS = BASE_URL + "/{id}/profile";
 
 
 }

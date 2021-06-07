@@ -1,7 +1,7 @@
 package com.innoventes.jukebox.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.innoventes.jukebox.models.entity.JukeboxUser;
+import com.innoventes.jukebox.models.entity.AbstractUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -25,7 +25,7 @@ public class UserDetailsImpl implements UserDetails {
         this.password = password;
     }
 
-    public static UserDetailsImpl build(JukeboxUser user) {
+    public static UserDetailsImpl build(AbstractUser user) {
         return new UserDetailsImpl(user.getId(),
                 user.getEmail(),
                 user.getPassword());

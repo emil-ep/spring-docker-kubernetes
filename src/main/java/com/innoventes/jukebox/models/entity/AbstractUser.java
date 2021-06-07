@@ -1,9 +1,12 @@
 package com.innoventes.jukebox.models.entity;
 
+import com.innoventes.jukebox.constants.UserType;
+
 import javax.persistence.*;
 
 @Entity(name = "tbl_users")
-public class JukeboxUser {
+//@DiscriminatorColumn(name = "user_type")
+public class AbstractUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,12 +18,24 @@ public class JukeboxUser {
     @Column(name = "password")
     private String password;
 
-    public JukeboxUser() {
+    @Column(name = "user_type")
+    private String userType;
+
+    public AbstractUser() {
     }
 
-    public JukeboxUser(String email, String password) {
+    public AbstractUser(String email, String password, UserType userType) {
         this.email = email;
         this.password = password;
+        this.userType = userType.name();
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public Integer getId() {
