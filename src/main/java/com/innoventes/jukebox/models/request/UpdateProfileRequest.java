@@ -3,11 +3,12 @@ package com.innoventes.jukebox.models.request;
 import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class UpdateProfileRequest {
 
-    @Nullable
+    @NotNull
     private Integer id;
 
     @NotBlank(message = "first name cannot be empty")
@@ -19,13 +20,12 @@ public class UpdateProfileRequest {
     //No need to update email now since we have only an admin user. When other users are introduced,
     //this field can be uncommented and used for updating the email address of user
 //    private String email;
+    @NotBlank(message = "user type cannot be empty")
+    private String userType;
 
     private String currentPassword;
 
     private String password;
-
-    @NotBlank
-    private String email;
 
     @Nullable
     public Integer getId() {
@@ -36,13 +36,6 @@ public class UpdateProfileRequest {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -74,5 +67,13 @@ public class UpdateProfileRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 }

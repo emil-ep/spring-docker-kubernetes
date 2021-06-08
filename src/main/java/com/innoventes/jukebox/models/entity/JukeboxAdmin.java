@@ -3,7 +3,11 @@ package com.innoventes.jukebox.models.entity;
 import com.innoventes.jukebox.constants.UserType;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
+@Entity
+@DiscriminatorValue(value = "JUKEBOX_ADMIN")
 public class JukeboxAdmin extends AbstractUser{
 
     @Column(name = "first_name")
@@ -11,6 +15,9 @@ public class JukeboxAdmin extends AbstractUser{
 
     @Column(name = "last_name")
     private String lastName;
+
+    public JukeboxAdmin() {
+    }
 
     public JukeboxAdmin(String email, String password, String firstName, String lastName){
         super(email, password, UserType.JUKEBOX_ADMIN);

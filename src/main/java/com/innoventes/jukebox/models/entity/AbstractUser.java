@@ -1,11 +1,13 @@
 package com.innoventes.jukebox.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.innoventes.jukebox.constants.UserType;
 
 import javax.persistence.*;
 
 @Entity(name = "tbl_users")
-//@DiscriminatorColumn(name = "user_type")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
 public class AbstractUser {
 
     @Id
@@ -16,9 +18,10 @@ public class AbstractUser {
     private String email;
 
     @Column(name = "password")
+    @JsonIgnore
     private String password;
 
-    @Column(name = "user_type")
+    @Column(name = "user_type", insertable = false, updatable = false)
     private String userType;
 
     public AbstractUser() {

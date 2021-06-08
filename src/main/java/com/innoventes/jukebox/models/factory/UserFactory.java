@@ -11,7 +11,7 @@ public class UserFactory {
         AbstractUser user = null;
         switch (type){
             case JUKEBOX_ADMIN:
-                user = createAdmin(request);
+//                user = createAdmin(request);
                 break;
             case JUKEBOX_USER:
                 break;
@@ -19,12 +19,12 @@ public class UserFactory {
         return user;
     }
 
-    public static AbstractUser createAdmin(UpdateProfileRequest request){
-        return new JukeboxAdmin(
-                request.getEmail(),
-                request.getPassword(),
-                request.getFirstName(),
-                request.getLastName()
-        );
-    }
+//    public static AbstractUser createAdmin(UpdateProfileRequest request){
+//        return new JukeboxAdmin(
+//                request.getEmail(),
+//                request.getPassword(),
+//                request.getFirstName(),
+//                request.getLastName()
+//        );
+//    }
 }

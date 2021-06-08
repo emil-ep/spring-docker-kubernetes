@@ -11,5 +11,5 @@ public interface UserService {
 
     Optional<AbstractUser> findUserById(Integer id);
 
-    AbstractUser updateUser(AbstractUser user, UpdateProfileRequest updateProfileRequest);
+    AbstractUser updateUser(UpdateProfileRequest updateProfileRequest);
 }

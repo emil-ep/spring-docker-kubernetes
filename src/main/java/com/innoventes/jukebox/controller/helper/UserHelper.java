@@ -1,6 +1,5 @@
 package com.innoventes.jukebox.controller.helper;
 
-import com.innoventes.jukebox.exceptions.JukeBoxInternalServerException;
 import com.innoventes.jukebox.models.entity.AbstractUser;
 import com.innoventes.jukebox.models.request.UpdateProfileRequest;
 import com.innoventes.jukebox.models.response.ErrorResponse;
@@ -29,20 +28,7 @@ public class UserHelper {
     private PasswordEncoder encoder;
 
     public ResponseEntity<JukeboxResponse> updateProfileDetails(UpdateProfileRequest request) {
-        Optional<AbstractUser> userOptional = userService.findUserById(request.getId());
-        if (userOptional.isPresent()) {
-            AbstractUser user = userOptional.get();
-            try {
-                return ResponseEntity.ok(new SuccessResponse(userService.updateUser(user, request)));
-            } catch (JukeBoxInternalServerException ex) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body(new ErrorResponse(ex.getMessage()));
-            }
-        } else {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(new ErrorResponse("User with id + " + request.getId() + " not found"));
-        }
+        return ResponseEntity.ok(new SuccessResponse(userService.updateUser(request)));
     }
 
     public ResponseEntity<JukeboxResponse> fetchProfileDetails(Integer id){
