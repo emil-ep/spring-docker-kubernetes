@@ -1,7 +1,9 @@
 package com.innoventes.jukebox.advice;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import com.innoventes.jukebox.exceptions.JukeBoxInternalServerException;
 import com.innoventes.jukebox.exceptions.JukeBoxUnauthorizedException;
+import com.innoventes.jukebox.exceptions.JukeboxNotFoundException;
 import com.innoventes.jukebox.models.response.ErrorResponse;
 import com.innoventes.jukebox.models.response.JukeboxResponse;
 import org.springframework.core.Ordered;
@@ -24,5 +26,15 @@ public class RestExceptionHandler  {
     @ExceptionHandler(value = {InvalidFormatException.class})
     public ResponseEntity<JukeboxResponse> handleInvalidDateFormatException(InvalidFormatException exception){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(exception.getMessage()));
+    }
+
+    @ExceptionHandler(value = {JukeBoxInternalServerException.class})
+    public ResponseEntity<JukeboxResponse> handleInternalServerException(JukeBoxInternalServerException exception){
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse(exception.getMessage()));
+    }
+
+    @ExceptionHandler(value = {JukeboxNotFoundException.class})
+    public ResponseEntity<JukeboxResponse> handleNotFoundException(JukeboxNotFoundException exception){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(exception.getMessage()));
     }
 }
