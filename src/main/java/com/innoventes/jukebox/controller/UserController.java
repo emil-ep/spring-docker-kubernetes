@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
+
 @RestController
 @Api(tags = {SwaggerConstants.USER_MANAGEMENT})
 public class UserController {
@@ -23,7 +25,7 @@ public class UserController {
     }
 
     @GetMapping(ApiConstants.GET_PROFILE_DETAILS)
-    public ResponseEntity<JukeboxResponse> getProfile(@PathVariable Integer id){
+    public ResponseEntity<JukeboxResponse> getProfile(@NotNull(message = "Id cannot be null") @PathVariable Integer id){
         return userHelper.fetchProfileDetails(id);
     }
 }

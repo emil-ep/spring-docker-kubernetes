@@ -16,6 +16,6 @@ public class WebConfiguration implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         //The pattern, allowedOrigins and allowedMethods should be restricted to the frontend application url,
         //so that CORS attacks won't happen
-        registry.addMapping("/**").allowedMethods("*");
+        registry.addMapping("/**").allowedOrigins("*").allowedMethods("*");
     }
 }
