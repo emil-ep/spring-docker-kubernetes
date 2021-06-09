@@ -32,7 +32,7 @@ public class ApiConstants {
 
     public static final String UPDATE_PROFILE_DETAILS = BASE_URL + "/profile";
 
-    public static final String GET_PROFILE_DETAILS = BASE_URL + "/{id}/profile";
+    public static final String GET_PROFILE_DETAILS = BASE_URL + "/profile/{id}";
 
 
 }
