@@ -20,12 +20,12 @@ public class UserController {
     private UserHelper userHelper;
 
     @PatchMapping(ApiConstants.UPDATE_PROFILE_DETAILS)
-    public ResponseEntity<JukeboxResponse> updateProfile(@RequestBody UpdateProfileRequest request){
+    public ResponseEntity<JukeboxResponse> updateProfile(@RequestBody UpdateProfileRequest request) {
         return userHelper.updateProfileDetails(request);
     }
 
     @GetMapping(ApiConstants.GET_PROFILE_DETAILS)
-    public ResponseEntity<JukeboxResponse> getProfile(@NotNull(message = "Id cannot be null") @PathVariable Integer id){
-        return userHelper.fetchProfileDetails(id);
+    public ResponseEntity<JukeboxResponse> getProfile(@RequestHeader("Authorization") String authHeader) {
+        return userHelper.fetchProfileDetails(authHeader);
     }
 }
