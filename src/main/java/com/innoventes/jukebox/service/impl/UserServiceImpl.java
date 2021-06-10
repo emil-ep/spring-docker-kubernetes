@@ -37,6 +37,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Optional<AbstractUser> findUserByEmail(String email) {
+        return abstractUserRepository.findUserByEmail(email);
+    }
+
+    @Override
     public AbstractUser updateUser(UpdateProfileRequest updateProfileRequest) {
         UserType userType = UserType.valueOf(updateProfileRequest.getUserType());
         switch (userType){
