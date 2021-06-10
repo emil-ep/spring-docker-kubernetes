@@ -43,12 +43,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        //actual filtering is done In the shouldNotFilter method in AuthTokenFilter class
-        //The below antMatchers filtering doesn't work
-        web.ignoring().antMatchers("/api/v1/**");
-    }
+//    @Override
+//    public void configure(WebSecurity web) throws Exception {
+//        //actual filtering is done In the shouldNotFilter method in AuthTokenFilter class
+//        //The below antMatchers filtering doesn't work
+//        web.ignoring().antMatchers("/api/v1/**");
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
