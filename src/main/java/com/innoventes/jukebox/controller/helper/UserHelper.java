@@ -5,6 +5,7 @@ import com.innoventes.jukebox.models.request.UpdateProfileRequest;
 import com.innoventes.jukebox.models.response.ErrorResponse;
 import com.innoventes.jukebox.models.response.JukeboxResponse;
 import com.innoventes.jukebox.models.response.SuccessResponse;
+import com.innoventes.jukebox.security.jwt.JwtUtils;
 import com.innoventes.jukebox.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,12 +28,18 @@ public class UserHelper {
     @Autowired
     private PasswordEncoder encoder;
 
+    @Autowired
+    private JwtUtils jwtUtils;
+
     public ResponseEntity<JukeboxResponse> updateProfileDetails(UpdateProfileRequest request) {
         return ResponseEntity.ok(new SuccessResponse(userService.updateUser(request)));
     }
 
-    public ResponseEntity<JukeboxResponse> fetchProfileDetails(Integer id){
-        Optional<AbstractUser> userOptional = userService.findUserById(id);
+    public ResponseEntity<JukeboxResponse> fetchProfileDetails(String authHeader){
+        String[] tokenSplit = authHeader.split("Bearer");
+        String jwtToken = tokenSplit[1];
+        String userEmail = jwtUtils.getSubjectFromJwtToken(jwtToken);
+        Optional<AbstractUser> userOptional = userService.findUserByEmail(userEmail);
         return userOptional.<ResponseEntity<JukeboxResponse>>map(
                 abstractUser -> ResponseEntity.ok(new SuccessResponse(abstractUser)))
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("User details not found")));

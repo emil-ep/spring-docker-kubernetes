@@ -11,5 +11,7 @@ public interface UserService {
 
     Optional<AbstractUser> findUserById(Integer id);
 
+    Optional<AbstractUser> findUserByEmail(String email);
+
     AbstractUser updateUser(UpdateProfileRequest updateProfileRequest);
 }
