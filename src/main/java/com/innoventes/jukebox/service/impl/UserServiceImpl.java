@@ -4,16 +4,19 @@ import com.innoventes.jukebox.constants.UserType;
 import com.innoventes.jukebox.exceptions.JukeBoxInternalServerException;
 import com.innoventes.jukebox.exceptions.JukeboxNotFoundException;
 import com.innoventes.jukebox.models.entity.AbstractUser;
+import com.innoventes.jukebox.models.entity.FileStore;
 import com.innoventes.jukebox.models.entity.JukeboxAdmin;
 import com.innoventes.jukebox.models.request.UpdateProfileRequest;
 import com.innoventes.jukebox.repository.AbstractUserRepository;
 import com.innoventes.jukebox.repository.JukeboxAdminRepository;
+import com.innoventes.jukebox.service.StorageService;
 import com.innoventes.jukebox.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;
 
@@ -30,6 +33,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PasswordEncoder encoder;
+
+    @Autowired
+    private StorageService storageService;
 
     @Override
     public Optional<AbstractUser> findUserById(Integer id) {
@@ -62,5 +68,13 @@ public class UserServiceImpl implements UserService {
             default:
                 throw new JukeBoxInternalServerException("Usertype not handled for saving in database");
         }
+    }
+
+    @Override
+    public Boolean updateProfilePic(MultipartFile multipartFile, AbstractUser user) {
+        FileStore fileStore = storageService.store(multipartFile);
+        user.setProfilePic(fileStore);
+        abstractUserRepository.save(user);
+        return true;
     }
 }
