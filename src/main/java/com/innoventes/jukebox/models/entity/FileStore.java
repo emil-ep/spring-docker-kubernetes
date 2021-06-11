@@ -1,16 +1,13 @@
 package com.innoventes.jukebox.models.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 
 @Entity(name = "tbl_files")
 public class FileStore {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     private String name;
 
@@ -28,11 +25,11 @@ public class FileStore {
         this.data = data;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
