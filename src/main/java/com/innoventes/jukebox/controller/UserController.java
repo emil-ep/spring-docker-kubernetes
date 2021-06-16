@@ -36,8 +36,8 @@ public class UserController {
         return userHelper.updateProfilePic(file, authHeader);
     }
 
-    @GetMapping(ApiConstants.GET_PROFILE_PICTURE)
-    public ResponseEntity<JukeboxResponse> getProfilePic(@RequestHeader("Authorization") String authHeader){
-        return userHelper.getProfilePic(authHeader);
-    }
+//    @GetMapping(ApiConstants.GET_PROFILE_PICTURE)
+//    public ResponseEntity<JukeboxResponse> getProfilePic(@RequestHeader("Authorization") String authHeader){
+//        return userHelper.getProfilePic(authHeader);
+//    }
 }

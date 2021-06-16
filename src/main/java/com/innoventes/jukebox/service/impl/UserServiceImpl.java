@@ -43,8 +43,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<AbstractUser> findUserByEmail(String email) {
-        return abstractUserRepository.findUserByEmail(email);
+    public AbstractUser findUserByEmail(String email) {
+        Optional<AbstractUser> abstractUserOptional = abstractUserRepository.findUserByEmail(email);
+        if (abstractUserOptional.isPresent()){
+            AbstractUser user = abstractUserOptional.get();
+            if (user.getProfilePic() != null){
+                String profilePicDownloadUrl = storageService.getDownloadUrl(user.getProfilePic());
+                user.getProfilePic().setDownloadUri(profilePicDownloadUrl);
+            }
+            return user;
+        }else{
+            throw new JukeboxNotFoundException("User with email " + email + " not found");
+        }
     }
 
     @Override

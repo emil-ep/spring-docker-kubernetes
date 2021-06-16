@@ -16,6 +16,8 @@ public class FileStore {
 
     private String type;
 
+    private String downloadUri;
+
     public FileStore() {
     }
 
@@ -48,4 +50,11 @@ public class FileStore {
         this.type = type;
     }
 
+    public String getDownloadUri() {
+        return downloadUri;
+    }
+
+    public void setDownloadUri(String downloadUri) {
+        this.downloadUri = downloadUri;
+    }
 }
