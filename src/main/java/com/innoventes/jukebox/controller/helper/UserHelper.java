@@ -1,8 +1,10 @@
 package com.innoventes.jukebox.controller.helper;
 
 import com.innoventes.jukebox.models.entity.AbstractUser;
+import com.innoventes.jukebox.models.entity.FileStore;
 import com.innoventes.jukebox.models.request.UpdateProfileRequest;
 import com.innoventes.jukebox.models.response.ErrorResponse;
+import com.innoventes.jukebox.models.response.FileResponse;
 import com.innoventes.jukebox.models.response.JukeboxResponse;
 import com.innoventes.jukebox.models.response.SuccessResponse;
 import com.innoventes.jukebox.security.jwt.JwtUtils;
@@ -11,6 +13,7 @@ import com.innoventes.jukebox.util.CommonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,6 +33,9 @@ public class UserHelper {
     @Autowired
     private PasswordEncoder encoder;
 
+    @Value("${jukebox.file.upload.path:/uploads/}")
+    private String uploadPath;
+
     @Autowired
     private JwtUtils jwtUtils;
 
@@ -38,7 +44,7 @@ public class UserHelper {
         return ResponseEntity.ok(new SuccessResponse(userService.updateUser(request)));
     }
 
-    public ResponseEntity<JukeboxResponse> fetchProfileDetails(String authHeader){
+    public ResponseEntity<JukeboxResponse> fetchProfileDetails(String authHeader) {
         String jwtToken = CommonUtils.getJwtTokenFromAuthHeader(authHeader);
         String userEmail = jwtUtils.getSubjectFromJwtToken(jwtToken);
         LOGGER.debug("Fetch profile detail request received : Email - " + userEmail);
@@ -53,10 +59,30 @@ public class UserHelper {
         String userEmail = jwtUtils.getSubjectFromJwtToken(jwtToken);
         LOGGER.debug("Update profile picture request received : Email - " + userEmail);
         Optional<AbstractUser> userOptional = userService.findUserByEmail(userEmail);
-        if (userOptional.isPresent()){
+        if (userOptional.isPresent()) {
             userService.updateProfilePic(file, userOptional.get());
             return ResponseEntity.ok(new SuccessResponse("Profile pic updated successfully!"));
-        }else{
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("User not found"));
+        }
+    }
+
+    public ResponseEntity<JukeboxResponse> getProfilePic(String authHeader) {
+
+        String jwtToken = CommonUtils.getJwtTokenFromAuthHeader(authHeader);
+        String userEmail = jwtUtils.getSubjectFromJwtToken(jwtToken);
+        LOGGER.debug("Get profile picture request received : Email - " + userEmail);
+        Optional<AbstractUser> userOptional = userService.findUserByEmail(userEmail);
+        if (userOptional.isPresent()) {
+            Optional<FileStore> profilePic = userService.getProfilePic(userOptional.get());
+            return profilePic
+                    .<ResponseEntity<JukeboxResponse>>map(
+                            fileStore -> ResponseEntity.ok(new SuccessResponse(
+                                    new FileResponse(uploadPath + fileStore.getName(), fileStore.getType())))
+                    ).orElseGet(
+                            () -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("Profile pic not found"))
+                    );
+        } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("User not found"));
         }
     }

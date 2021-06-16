@@ -7,6 +7,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public interface StorageService {
 
+    void init();
+
     FileStore store(MultipartFile file);
 
     FileStore getFile(String id);

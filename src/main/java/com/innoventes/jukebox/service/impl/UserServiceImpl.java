@@ -77,4 +77,11 @@ public class UserServiceImpl implements UserService {
         abstractUserRepository.save(user);
         return true;
     }
+
+    @Override
+    public Optional<FileStore> getProfilePic(AbstractUser user) {
+        FileStore profilePic = user.getProfilePic();
+
+        return Optional.of(profilePic);
+    }
 }

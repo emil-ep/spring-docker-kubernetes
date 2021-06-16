@@ -36,5 +36,7 @@ public class ApiConstants {
 
     public static final String UPDATE_PROFILE_PICTURE = BASE_URL + "/profile/profile-pic";
 
+    public static final String GET_PROFILE_PICTURE = BASE_URL + "/profile/profile-pic";
+
 
 }

@@ -1,6 +1,9 @@
 package com.innoventes.jukebox.models.entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity(name = "tbl_files")
 public class FileStore {
@@ -13,16 +16,12 @@ public class FileStore {
 
     private String type;
 
-    @Lob
-    private byte[] data;
-
     public FileStore() {
     }
 
-    public FileStore(String name, String type, byte[] data) {
+    public FileStore(String name, String type) {
         this.name = name;
         this.type = type;
-        this.data = data;
     }
 
     public Integer getId() {
@@ -49,11 +48,4 @@ public class FileStore {
         this.type = type;
     }
 
-    public byte[] getData() {
-        return data;
-    }
-
-    public void setData(byte[] data) {
-        this.data = data;
-    }
 }

@@ -1,6 +1,7 @@
 package com.innoventes.jukebox.service;
 
 import com.innoventes.jukebox.models.entity.AbstractUser;
+import com.innoventes.jukebox.models.entity.FileStore;
 import com.innoventes.jukebox.models.request.UpdateProfileRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,5 +18,7 @@ public interface UserService {
     AbstractUser updateUser(UpdateProfileRequest updateProfileRequest);
 
     Boolean updateProfilePic(MultipartFile multipartFile, AbstractUser user);
+
+    Optional<FileStore> getProfilePic(AbstractUser user);
 
 }
