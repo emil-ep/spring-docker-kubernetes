@@ -8,13 +8,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import static com.innoventes.jukebox.constants.ApiConstants.*;
 
 @Configuration
 @EnableWebSecurity
@@ -62,7 +63,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 //This antMatcher filtering doesn't work.
                 // The actual filtering is done in shouldNotFilter method in AuthTokenFilter class
-                .antMatchers("/api/v1/auth/**").permitAll()
+                .antMatchers(AUTHENTICATION_BASE_PATH + "/**").permitAll()
+                .antMatchers(BASE_URL + DOWNLOAD_FILE_BASE_PATH + "**").permitAll()
                 .antMatchers(
                         "/v2/api-docs",
                         "/swagger-resources/**",

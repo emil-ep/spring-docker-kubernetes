@@ -34,7 +34,8 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         String path = request.getRequestURI();
-       return path.contains(ApiConstants.AUTHENTICATION_BASE_PATH)
+        return path.contains(ApiConstants.AUTHENTICATION_BASE_PATH)
+                || path.contains(DOWNLOAD_FILE_BASE_PATH)
                 || path.contains(SWAGGER_UI_PATH)
                 || path.contains(SWAGGER_DOC_PATH)
                 || path.contains(SWAGGER_RESOURCES)
