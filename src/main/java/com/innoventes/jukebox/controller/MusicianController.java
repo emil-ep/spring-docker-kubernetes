@@ -23,18 +23,21 @@ public class MusicianController {
 
 
     @PutMapping(MUSICIAN_BASE_PATH)
-    public ResponseEntity<JukeboxResponse> addMusician(@Valid @RequestBody MusicianRequest request) {
+    public ResponseEntity<JukeboxResponse> addMusician(@Valid @RequestBody MusicianRequest request,
+                                                       @RequestHeader("Authorization") String authHeader) {
         return musicianHelper.createMusician(request);
     }
 
     @PatchMapping(MUSICIAN_BASE_PATH)
-    public ResponseEntity<JukeboxResponse> updateMusician(@Valid @RequestBody MusicianRequest request) {
+    public ResponseEntity<JukeboxResponse> updateMusician(@Valid @RequestBody MusicianRequest request,
+                                                          @RequestHeader("Authorization") String authHeader) {
         return musicianHelper.updateMusician(request);
     }
 
     @GetMapping(MUSICIAN_SORT_BY_NAME)
     public ResponseEntity<JukeboxResponse> fetchMusicianList(@RequestParam Integer albumId, @RequestParam Integer pageNo,
-                                                             @RequestParam Integer size){
+                                                             @RequestParam Integer size,
+                                                             @RequestHeader("Authorization") String authHeader){
         return musicianHelper.fetchMusicianWithPagination(albumId, pageNo, size);
     }
 }

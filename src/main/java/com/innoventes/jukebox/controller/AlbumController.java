@@ -22,23 +22,28 @@ public class AlbumController {
     private AlbumHelper albumHelper;
 
     @PutMapping(ALBUM_BASE_PATH)
-    public ResponseEntity<JukeboxResponse> createNewAlbum(@Valid @RequestBody AlbumRequest request) {
+    public ResponseEntity<JukeboxResponse> createNewAlbum(@Valid @RequestBody AlbumRequest request,
+                                                          @RequestHeader("Authorization") String authHeader) {
         return albumHelper.createAlbum(request);
     }
 
     @PatchMapping(ALBUM_BASE_PATH)
-    public ResponseEntity<JukeboxResponse> updateAlbum(@Valid @RequestBody AlbumRequest request){
+    public ResponseEntity<JukeboxResponse> updateAlbum(@Valid @RequestBody AlbumRequest request,
+                                                       @RequestHeader("Authorization") String authHeader){
         return albumHelper.updateAlbum(request);
     }
 
 
     @GetMapping(API_ALBUM_SORT_BY_PRICE)
-    public ResponseEntity<JukeboxResponse> fetchMusicAlbumsByPrice(@RequestParam int musicianId,@RequestParam int pageNo, @RequestParam int size) {
+    public ResponseEntity<JukeboxResponse> fetchMusicAlbumsByPrice(@RequestParam int musicianId,
+                                                                   @RequestParam int pageNo,
+                                                                   @RequestParam int size,
+                                                                   @RequestHeader("Authorization") String authHeader) {
         return albumHelper.fetchAlbumWithPagination(musicianId, pageNo, size);
     }
 
     @GetMapping(API_ALBUM_SORT_BY_DATE)
-    public ResponseEntity<JukeboxResponse> fetchMusicAlbumsByDate() {
+    public ResponseEntity<JukeboxResponse> fetchMusicAlbumsByDate(@RequestHeader("Authorization") String authHeader) {
         return albumHelper.fetchAlbumsSortedByDate();
     }
 }
