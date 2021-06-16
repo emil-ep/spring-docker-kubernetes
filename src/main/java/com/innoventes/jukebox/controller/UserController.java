@@ -11,8 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.NotNull;
-
 @RestController
 @Api(tags = {SwaggerConstants.USER_MANAGEMENT})
 public class UserController {
@@ -21,7 +19,8 @@ public class UserController {
     private UserHelper userHelper;
 
     @PatchMapping(ApiConstants.UPDATE_PROFILE_DETAILS)
-    public ResponseEntity<JukeboxResponse> updateProfile(@RequestBody UpdateProfileRequest request) {
+    public ResponseEntity<JukeboxResponse> updateProfile(@RequestBody UpdateProfileRequest request,
+                                                         @RequestHeader("Authorization") String authHeader) {
         return userHelper.updateProfileDetails(request);
     }
 
@@ -35,9 +34,4 @@ public class UserController {
                                                             @RequestHeader("Authorization") String authHeader){
         return userHelper.updateProfilePic(file, authHeader);
     }
-
-//    @GetMapping(ApiConstants.GET_PROFILE_PICTURE)
-//    public ResponseEntity<JukeboxResponse> getProfilePic(@RequestHeader("Authorization") String authHeader){
-//        return userHelper.getProfilePic(authHeader);
-//    }
 }
