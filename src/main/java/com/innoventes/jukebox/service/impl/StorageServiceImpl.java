@@ -22,6 +22,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static com.innoventes.jukebox.constants.ApiConstants.*;
+
 @Service
 public class StorageServiceImpl implements StorageService {
 
@@ -82,7 +84,7 @@ public class StorageServiceImpl implements StorageService {
     @Override
     public String getDownloadUrl(FileStore store) {
         return ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/downloadFile/")
+                .path(BASE_URL + DOWNLOAD_FILE_BASE_PATH)
                 .path(store.getName())
                 .toUriString();
     }

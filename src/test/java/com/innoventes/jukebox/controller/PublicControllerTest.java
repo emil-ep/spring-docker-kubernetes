@@ -15,7 +15,7 @@ import java.util.Objects;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @SpringBootTest
-public class AuthControllerTest extends AbstractControllerTest{
+public class PublicControllerTest extends AbstractControllerTest{
 
 
     @Test

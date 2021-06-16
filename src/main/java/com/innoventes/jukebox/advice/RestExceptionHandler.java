@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice
@@ -36,5 +37,10 @@ public class RestExceptionHandler  {
     @ExceptionHandler(value = {JukeboxNotFoundException.class})
     public ResponseEntity<JukeboxResponse> handleNotFoundException(JukeboxNotFoundException exception){
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(exception.getMessage()));
+    }
+
+    @ExceptionHandler(value = {MaxUploadSizeExceededException.class})
+    public ResponseEntity<JukeboxResponse> handleMaxUploadExceededException(MaxUploadSizeExceededException exception){
+        return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ErrorResponse("File size is too large!"));
     }
 }

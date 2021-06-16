@@ -19,6 +19,4 @@ public interface UserService {
 
     Boolean updateProfilePic(MultipartFile multipartFile, AbstractUser user);
 
-    Optional<FileStore> getProfilePic(AbstractUser user);
-
 }
