@@ -18,4 +18,9 @@ public class CommonUtils {
             return null;
         }
     }
+
+    public static String getJwtTokenFromAuthHeader(String authHeader){
+        String[] tokenSplit = authHeader.split("Bearer");
+        return tokenSplit[1];
+    }
 }

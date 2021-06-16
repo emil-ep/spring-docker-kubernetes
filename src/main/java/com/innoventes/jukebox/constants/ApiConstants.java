@@ -20,6 +20,10 @@ public class ApiConstants {
 
     public static final String API_ENCRYPT = BASE_URL + "/auth/encrypt/{var}";
 
+    public static final String DOWNLOAD_FILE_BASE_PATH = "/downloadFile/";
+
+    public static final String API_DOWNLOAD_FILE = BASE_URL + DOWNLOAD_FILE_BASE_PATH + "{fileName}";
+
     public static final String ALBUM_BASE_PATH = BASE_URL + "/album";
 
     public static final String API_ALBUM_SORT_BY_PRICE = BASE_URL + "/album/sort/price";
@@ -33,6 +37,10 @@ public class ApiConstants {
     public static final String UPDATE_PROFILE_DETAILS = BASE_URL + "/profile";
 
     public static final String GET_PROFILE_DETAILS = BASE_URL + "/profile/{id}";
+
+    public static final String UPDATE_PROFILE_PICTURE = BASE_URL + "/profile/profile-pic";
+
+    public static final String GET_PROFILE_PICTURE = BASE_URL + "/profile/profile-pic";
 
 
 }

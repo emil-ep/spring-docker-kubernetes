@@ -24,6 +24,10 @@ public class AbstractUser {
     @Column(name = "user_type", insertable = false, updatable = false)
     private String userType;
 
+    @OneToOne
+    @JoinColumn(name = "profile_pic_id")
+    private FileStore profilePic;
+
     public AbstractUser() {
     }
 
@@ -31,6 +35,14 @@ public class AbstractUser {
         this.email = email;
         this.password = password;
         this.userType = userType.name();
+    }
+
+    public FileStore getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(FileStore profilePic) {
+        this.profilePic = profilePic;
     }
 
     public String getUserType() {
