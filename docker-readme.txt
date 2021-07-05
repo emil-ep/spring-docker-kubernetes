@@ -17,5 +17,17 @@ others can use the below mysql
 5. docker image build -t jukebox:v1 .
 
 
-//Now run the built image as a container in the already existing network jukebox-mysql
+//Now run the already built image(jukebox:v1 in our case) as a container in the already existing network jukebox-mysql
 6. docker container run --network jukebox-mysql --name jukebox-jdbc-container -p 8080:8080 -d jukebox:v1
+
+Some additional docker commands
+1. List docker containers
+   docker container ls
+ 1.1 Stop docker container
+     docker container stop <container id>
+ 1.2 Remove docker container
+     docker container rm <container id>
+2. List docker network
+   docker network ls
+ 2.1 Remove docker network
+     docker network rm <network id>
