@@ -30,7 +30,7 @@ spec:
             claimName: log
       containers:
         - name: app
-          image: emilpradeep/jukebox:v4
+          image: emilpradeep/jukebox:v6
           ports:
             - containerPort: 8080
           env:
