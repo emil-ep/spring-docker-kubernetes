@@ -1,4 +1,4 @@
-package com.innoventes.jukebox.test.string;
+package com.innoventes.jukebox.crackingcodinginterview.string;
 
 public class StringPermuationCheck {
 
