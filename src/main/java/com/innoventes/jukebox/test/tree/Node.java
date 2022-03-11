@@ -2,13 +2,17 @@ package com.innoventes.jukebox.test.tree;
 
 public class Node {
 
-    Node left;
-    Node right;
-    int value;
+    private Node left;
+    private Node right;
+    private int value;
 
     public Node(Node left, Node right, int value){
         this.left = left;
         this.right = right;
+        this.value = value;
+    }
+
+    public Node(int value) {
         this.value = value;
     }
 
