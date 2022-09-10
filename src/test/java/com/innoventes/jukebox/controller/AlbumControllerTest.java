@@ -28,7 +28,7 @@ public class AlbumControllerTest extends AbstractControllerTest {
     @Test
     public void addAlbumWithEmptyName() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .put(ALBUM_BASE_PATH)
+                .post(ALBUM_BASE_PATH)
                 .header(TestUtils.AUTHORIZATION_HEADER,
                         testAuthHelper.getAuthHeader("admin@jukebox.com", "password"))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -43,7 +43,7 @@ public class AlbumControllerTest extends AbstractControllerTest {
     @Test
     public void addAlbumWithEmptyPrice() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .put(ALBUM_BASE_PATH)
+                .post(ALBUM_BASE_PATH)
                 .header(TestUtils.AUTHORIZATION_HEADER,
                         testAuthHelper.getAuthHeader("admin@jukebox.com", "password"))
                 .contentType(MediaType.APPLICATION_JSON)
