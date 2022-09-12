@@ -21,14 +21,14 @@ public class AlbumController {
     @Autowired
     private AlbumHelper albumHelper;
 
-    @PutMapping(ALBUM_BASE_PATH)
+    @PostMapping(ALBUM_BASE_PATH)
     public ResponseEntity<JukeboxResponse> createNewAlbum(@Valid @RequestBody AlbumRequest request,
                                                           @RequestHeader("Authorization") String authHeader) {
         return albumHelper.createAlbum(request);
     }
 
     @PatchMapping(ALBUM_BASE_PATH)
-    public ResponseEntity<JukeboxResponse> updateAlbum(@Valid @RequestBody AlbumRequest request,
+    public ResponseEntity<JukeboxResponse> updateAlbum(@RequestBody AlbumRequest request,
                                                        @RequestHeader("Authorization") String authHeader){
         return albumHelper.updateAlbum(request);
     }

@@ -58,16 +58,20 @@ public class MusicianHelper {
         Optional<Musician> musicianOptional = musicianService.findById(request.getId());
         if (musicianOptional.isPresent()) {
             Musician musician = musicianOptional.get();
-            musician.setName(request.getName());
-            if (!MusicianUtility.validateMusicianType(request.getType()))
+            if (request.getName() != null)
+                musician.setName(request.getName());
+            if (request.getType() != null && !MusicianUtility.validateMusicianType(request.getType()))
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("Musician type is not " +
                         "valid!"));
-            musician.setType(request.getType());
-            Set<MusicAlbum> albums = request.getAlbumIds().stream().map(id -> {
-                Optional<MusicAlbum> musicAlbumOptional = albumService.findById(id);
-                return musicAlbumOptional.orElse(null);
-            }).collect(Collectors.toSet());
-            musician.setAlbums(albums);
+            if (request.getType() != null)
+                musician.setType(request.getType());
+            if (request.getAlbumIds() != null) {
+                Set<MusicAlbum> albums = request.getAlbumIds().stream().map(id -> {
+                    Optional<MusicAlbum> musicAlbumOptional = albumService.findById(id);
+                    return musicAlbumOptional.orElse(null);
+                }).collect(Collectors.toSet());
+                musician.setAlbums(albums);
+            }
             return ResponseEntity.ok(new SuccessResponse(musicianService.updateMusician(musician)));
 
         } else {

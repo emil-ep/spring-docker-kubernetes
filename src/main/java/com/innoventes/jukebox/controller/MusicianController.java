@@ -22,7 +22,7 @@ public class MusicianController {
     private MusicianHelper musicianHelper;
 
 
-    @PutMapping(MUSICIAN_BASE_PATH)
+    @PostMapping(MUSICIAN_BASE_PATH)
     public ResponseEntity<JukeboxResponse> addMusician(@Valid @RequestBody MusicianRequest request,
                                                        @RequestHeader("Authorization") String authHeader) {
         return musicianHelper.createMusician(request);

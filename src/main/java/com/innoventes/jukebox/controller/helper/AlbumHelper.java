@@ -59,7 +59,7 @@ public class AlbumHelper {
     }
 
     public ResponseEntity<JukeboxResponse> updateAlbum(AlbumRequest request) {
-        if (request.getId() == null){
+        if (request.getId() == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Please provide album Id"));
         }
         Optional<MusicAlbum> musicAlbumOptional = albumService.findById(request.getId());
@@ -68,17 +68,24 @@ public class AlbumHelper {
                     + request.getId() + " not found"));
         else {
             MusicAlbum musicAlbum = musicAlbumOptional.get();
-            musicAlbum.setDateOfRelease(Date.valueOf(request.getDateOfRelease()));
-            musicAlbum.setGenre(request.getGenre());
-            musicAlbum.setPrice(request.getPrice());
-            musicAlbum.setDescription(request.getDescription());
-            Set<Musician> musicians = request.getMusicianId().stream().map(id -> {
-                        Optional<Musician> musician = musicianService.findById(id);
-                        return musician.orElse(null);
-                    }
-            ).collect(Collectors.toSet());
-            musicAlbum.setMusician(musicians);
-            musicAlbum.setName(request.getName());
+            if (request.getDateOfRelease() != null)
+                musicAlbum.setDateOfRelease(Date.valueOf(request.getDateOfRelease()));
+            if (request.getGenre() != null)
+                musicAlbum.setGenre(request.getGenre());
+            if (request.getPrice() != null)
+                musicAlbum.setPrice(request.getPrice());
+            if (request.getDescription() != null)
+                musicAlbum.setDescription(request.getDescription());
+            if (request.getMusicianId() != null) {
+                Set<Musician> musicians = request.getMusicianId().stream().map(id -> {
+                            Optional<Musician> musician = musicianService.findById(id);
+                            return musician.orElse(null);
+                        }
+                ).collect(Collectors.toSet());
+                musicAlbum.setMusician(musicians);
+            }
+            if (request.getName() != null)
+                musicAlbum.setName(request.getName());
             MusicAlbum savedAlbum = albumService.save(musicAlbum);
             return ResponseEntity.ok(new SuccessResponse(savedAlbum));
         }

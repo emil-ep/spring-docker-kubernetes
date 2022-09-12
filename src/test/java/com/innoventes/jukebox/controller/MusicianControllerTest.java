@@ -41,7 +41,7 @@ public class MusicianControllerTest extends AbstractControllerTest{
         musicianRequest.setName("Test Musician");
         musicianRequest.setType(MusicianTypes.POP.getMusicianType());
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .put(ApiConstants.MUSICIAN_BASE_PATH)
+                .post(ApiConstants.MUSICIAN_BASE_PATH)
                 .header(TestUtils.AUTHORIZATION_HEADER,
                         testAuthHelper.getAuthHeader("admin@jukebox.com", "password"))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -55,7 +55,7 @@ public class MusicianControllerTest extends AbstractControllerTest{
         MusicianRequest request = new MusicianRequest();
         request.setType(MusicianTypes.POP.getMusicianType());
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .put(ApiConstants.MUSICIAN_BASE_PATH)
+                .post(ApiConstants.MUSICIAN_BASE_PATH)
                 .header(TestUtils.AUTHORIZATION_HEADER,
                         testAuthHelper.getAuthHeader("admin@jukebox.com", "password"))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -70,7 +70,7 @@ public class MusicianControllerTest extends AbstractControllerTest{
         request.setType(MusicianTypes.POP.getMusicianType());
         request.setName("1");
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .put(ApiConstants.MUSICIAN_BASE_PATH)
+                .post(ApiConstants.MUSICIAN_BASE_PATH)
                 .header(TestUtils.AUTHORIZATION_HEADER,
                         testAuthHelper.getAuthHeader("admin@jukebox.com", "password"))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -85,7 +85,7 @@ public class MusicianControllerTest extends AbstractControllerTest{
         request.setType("Invalid type");
         request.setName("1");
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .put(ApiConstants.MUSICIAN_BASE_PATH)
+                .post(ApiConstants.MUSICIAN_BASE_PATH)
                 .header(TestUtils.AUTHORIZATION_HEADER,
                         testAuthHelper.getAuthHeader("admin@jukebox.com", "password"))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -131,7 +131,7 @@ public class MusicianControllerTest extends AbstractControllerTest{
         request.setName("Musician");
         request.setAlbumIds(Arrays.asList(1L, 2L));
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .put(ApiConstants.MUSICIAN_BASE_PATH)
+                .post(ApiConstants.MUSICIAN_BASE_PATH)
                 .header(TestUtils.AUTHORIZATION_HEADER,
                         testAuthHelper.getAuthHeader("admin@jukebox.com", "password"))
                 .contentType(MediaType.APPLICATION_JSON)
