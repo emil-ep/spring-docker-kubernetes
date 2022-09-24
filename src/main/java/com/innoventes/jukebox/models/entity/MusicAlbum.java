@@ -23,10 +23,25 @@ public class MusicAlbum {
     private Integer price;
 
     @Column(name = "date_of_release")
-    private Date dateOfRelease;
+    private String dateOfRelease;
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "num_of_tracks")
+    private String numberOfTracks;
+
+    @Column(name = "num_of_sales")
+    private String numberOfSales;
+
+    @Column(name = "rolling_stone_critic")
+    private Float rollingStoneCritic;
+
+    @Column(name = "mtv_critic")
+    private Float mtvCritic;
+
+    @Column(name = "music_maniac_critic")
+    private Float musicManiacCritic;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -36,10 +51,12 @@ public class MusicAlbum {
     )
     private Set<Musician> musician;
 
+
+
     public MusicAlbum() {
     }
 
-    public MusicAlbum(String name, String genre, Integer price, String description, Date dateOfRelease, Set<Musician> musician) {
+    public MusicAlbum(String name, String genre, Integer price, String description, String dateOfRelease, Set<Musician> musician) {
         this.name = name;
         this.genre = genre;
         this.price = price;
@@ -96,11 +113,51 @@ public class MusicAlbum {
         this.musician = musician;
     }
 
-    public Date getDateOfRelease() {
+    public String getDateOfRelease() {
         return dateOfRelease;
     }
 
-    public void setDateOfRelease(Date dateOfRelease) {
+    public void setDateOfRelease(String dateOfRelease) {
         this.dateOfRelease = dateOfRelease;
+    }
+
+    public String getNumberOfTracks() {
+        return numberOfTracks;
+    }
+
+    public void setNumberOfTracks(String numberOfTracks) {
+        this.numberOfTracks = numberOfTracks;
+    }
+
+    public String getNumberOfSales() {
+        return numberOfSales;
+    }
+
+    public void setNumberOfSales(String numberOfSales) {
+        this.numberOfSales = numberOfSales;
+    }
+
+    public Float getRollingStoneCritic() {
+        return rollingStoneCritic;
+    }
+
+    public void setRollingStoneCritic(Float rollingStoneCritic) {
+        this.rollingStoneCritic = rollingStoneCritic;
+    }
+
+    public Float getMtvCritic() {
+        return mtvCritic;
+    }
+
+    public void setMtvCritic(Float mtvCritic) {
+        this.mtvCritic = mtvCritic;
+    }
+
+    public Float getMusicManiacCritic() {
+        return musicManiacCritic;
+    }
+
+    public void setMusicManiacCritic(Float musicManiacCritic) {
+        this.musicManiacCritic = musicManiacCritic;
     }
 }

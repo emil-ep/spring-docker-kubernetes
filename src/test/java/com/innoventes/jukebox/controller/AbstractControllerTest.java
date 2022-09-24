@@ -24,12 +24,13 @@ public class AbstractControllerTest {
     @Autowired
     private WebApplicationContext webApplicationContext;
 
-    protected LocalDate getValidDateOfRelease(){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return LocalDate.parse("05-05-2021", formatter);
+    protected String getValidDateOfRelease(){
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+//        return LocalDate.parse("05-05-2021", formatter);
+        return "2020";
     }
 
-    protected AlbumRequest getAlbumRequest(Long id,String name, LocalDate dateOfRelease, String description, String genre,
+    protected AlbumRequest getAlbumRequest(Long id,String name, String dateOfRelease, String description, String genre,
                                            Integer price, List<Long> musicianIds){
         AlbumRequest albumRequest = new AlbumRequest();
         if (id != null)

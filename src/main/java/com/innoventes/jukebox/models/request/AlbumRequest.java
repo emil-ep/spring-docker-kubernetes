@@ -26,8 +26,7 @@ public class AlbumRequest {
 
     private String description;
 
-    @JsonFormat(pattern = "dd-MM-yyyy")
-    private LocalDate dateOfRelease;
+    private String dateOfRelease;
 
     private List<Long> musicianId;
 
@@ -71,11 +70,11 @@ public class AlbumRequest {
         this.description = description;
     }
 
-    public LocalDate getDateOfRelease() {
+    public String getDateOfRelease() {
         return dateOfRelease;
     }
 
-    public void setDateOfRelease(LocalDate dateOfRelease) {
+    public void setDateOfRelease(String dateOfRelease) {
         this.dateOfRelease = dateOfRelease;
     }
 

@@ -51,7 +51,7 @@ public class AlbumHelper {
                 request.getGenre(),
                 request.getPrice(),
                 request.getDescription(),
-                Date.valueOf(request.getDateOfRelease()),
+                request.getDateOfRelease(),
                 musicianSet
         );
         MusicAlbum musicAlbum = albumService.save(album);
@@ -69,7 +69,7 @@ public class AlbumHelper {
         else {
             MusicAlbum musicAlbum = musicAlbumOptional.get();
             if (request.getDateOfRelease() != null)
-                musicAlbum.setDateOfRelease(Date.valueOf(request.getDateOfRelease()));
+                musicAlbum.setDateOfRelease(request.getDateOfRelease());
             if (request.getGenre() != null)
                 musicAlbum.setGenre(request.getGenre());
             if (request.getPrice() != null)

@@ -35,8 +35,8 @@ public class AlbumRequestSerializer extends JsonSerializer<AlbumRequest> {
             jsonGenerator.writeNumberField("price", albumRequest.getPrice());
         if (albumRequest.getDescription() != null)
             jsonGenerator.writeStringField("description", albumRequest.getDescription());
-        if (albumRequest.getDateOfRelease() != null)
-            jsonGenerator.writeStringField("dateOfRelease", getLocalDateAsString(albumRequest.getDateOfRelease()));
+//        if (albumRequest.getDateOfRelease() != null)
+//            jsonGenerator.writeStringField("dateOfRelease", getLocalDateAsString(albumRequest.getDateOfRelease()));
         if (albumRequest.getMusicianId() != null && albumRequest.getMusicianId().size() != 0) {
             jsonGenerator.writeArrayFieldStart("musicianId");
             for (Long id : albumRequest.getMusicianId()) {
