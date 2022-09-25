@@ -1,4 +1,4 @@
-package com.innoventes.jukebox.batch;
+package com.innoventes.jukebox.batch.step1;
 
 public class MusicianInput {
 

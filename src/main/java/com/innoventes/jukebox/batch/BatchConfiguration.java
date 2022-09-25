@@ -1,5 +1,11 @@
 package com.innoventes.jukebox.batch;
 
+import com.innoventes.jukebox.batch.step1.MusicianInput;
+import com.innoventes.jukebox.batch.step1.MusicianProcessor;
+import com.innoventes.jukebox.batch.step1.MusicianWriter;
+import com.innoventes.jukebox.batch.step2.AlbumInput;
+import com.innoventes.jukebox.batch.step2.MusicAlbumProcessor;
+import com.innoventes.jukebox.batch.step2.MusicAlbumWriter;
 import com.innoventes.jukebox.models.entity.MusicAlbum;
 import com.innoventes.jukebox.models.entity.Musician;
 import org.springframework.batch.core.Job;

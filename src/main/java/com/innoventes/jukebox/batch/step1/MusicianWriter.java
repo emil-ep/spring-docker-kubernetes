@@ -1,4 +1,4 @@
-package com.innoventes.jukebox.batch;
+package com.innoventes.jukebox.batch.step1;
 
 import com.innoventes.jukebox.models.entity.Musician;
 import com.innoventes.jukebox.repository.MusicianRepository;

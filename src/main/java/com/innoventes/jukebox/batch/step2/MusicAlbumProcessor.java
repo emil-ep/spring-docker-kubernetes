@@ -1,5 +1,6 @@
-package com.innoventes.jukebox.batch;
+package com.innoventes.jukebox.batch.step2;
 
+import com.innoventes.jukebox.batch.step2.AlbumInput;
 import com.innoventes.jukebox.models.entity.MusicAlbum;
 import com.innoventes.jukebox.models.entity.Musician;
 import com.innoventes.jukebox.repository.MusicianRepository;
